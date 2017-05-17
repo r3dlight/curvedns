@@ -6,7 +6,7 @@ Build-Depends:
  debhelper (>=10),
  libev-dev,
  libnacl-dev
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Homepage: http://curvedns.on2it.net/
 Vcs-Git: https://github.com/r3dlight/curvedns.git
 Vcs-Browser: https://github.com/r3dlight/curvedns
