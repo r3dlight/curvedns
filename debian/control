@@ -1,0 +1,24 @@
+Source: curvedns
+Section: admin
+Priority: optional
+Maintainer: NEVEU Stephane <stefneveu@gmail.com>
+Build-Depends:
+ debhelper (>=10),
+ libev-dev,
+ libnacl-dev
+Standards-Version: 3.9.6
+Homepage: http://curvedns.on2it.net/
+Vcs-Git: https://github.com/r3dlight/curvedns.git
+Vcs-Browser: https://github.com/r3dlight/curvedns
+
+Package: curvedns
+Architecture: any
+Depends: 
+ ${shlibs:Depends}, 
+ ${misc:Depends},
+ libev,
+ libnacl,
+ daemontools
+Description:  A DNSCurve Forwarding Name Server
+ DNSCurve uses high-speed high-security elliptic-curve cryptography to 
+ drastically improve every dimension of DNS security.
