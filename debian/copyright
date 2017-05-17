@@ -1,10 +1,12 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: curvedns
-Source: <url://example.com>
+Source: http://curvedns.on2it.net/
 
 Files: *
-Copyright: <years> <put author's name and email here>
-           <years> <likewise for another author>
+Copyright: 2017 Harm van Tilborg
+           2017 Jeroen Scheerder
+	   2017 Lieuwe Jan Koning
+
 License: MIT
 
 Files: debian/*
