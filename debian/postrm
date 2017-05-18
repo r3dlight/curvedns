@@ -4,6 +4,7 @@
 
 if [ -f /usr/sbin/curvedns ]; then
   rm /usr/sbin/curvedns
+fi
 if [ -f /usr/sbin/curvedns-keygen ]; then
   rm /usr/sbin-curvedns-keygen
 fi
