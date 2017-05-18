@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+/bin/deluser --remove-all-files curvedns
+
+if [ -f /usr/sbin/curvedns ]; then
+  rm /usr/sbin/curvedns
+if [ -f /usr/sbin/curvedns-keygen ]; then
+  rm /usr/sbin-curvedns-keygen
+fi
+
+if [ -d /etc/curvedns/ ]; then
+   /bin/rm -fr /etc/curvedns/
+fi
+
+if [ -d /var/log/curvedns/ ]; then
+   /bin/rm -fr /var/log/curvedns/
+fi
+
+
