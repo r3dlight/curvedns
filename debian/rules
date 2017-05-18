@@ -16,6 +16,10 @@ override_dh_auto_configure:
 	 $(CURDIR)/configure.nacl
 	 $(CURDIR)/configure.curvedns
 
+override_dh_auto_build:
+	dh_auto_build
+	ronn -r $(CURDIR)/debian/curvedns.8.ronn
+
 %:
 	dh $@ 
 

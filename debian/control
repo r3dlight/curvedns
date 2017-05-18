@@ -5,7 +5,8 @@ Maintainer: NEVEU Stephane <stefneveu@gmail.com>
 Build-Depends:
  debhelper (>=10),
  libev-dev,
- libnacl-dev
+ libnacl-dev,
+ ronn
 Standards-Version: 3.9.8
 Homepage: http://curvedns.on2it.net/
 Vcs-Git: https://github.com/r3dlight/curvedns.git

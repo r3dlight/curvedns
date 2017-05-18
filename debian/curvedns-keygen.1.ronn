@@ -1,0 +1,95 @@
+curvedns-keygen(1) -- Generates a key pair for curvedns
+====
+
+## SYNOPSIS
+
+- `curvedns-keygen` [First Usage]: curvedns-keygen (First generate a keypair without any options)
+
+Then:
+
+- `curvedns-keygen` [Usage]: Usage: curvedns-keygen <path-of-CurveDNS-installation> <authoritative-name-server-name> (see RUNNING CurveDNS)
+
+## DESCRIPTION
+
+The general concept of DNSCurve is to have a key pair for each and every (authoritative) name server. Since CurveDNS is forwarding queries towards a (non-DNSCurve capable) authoritative name server, we generate and maintain this key pair.
+
+This is done as follows:
+
+	$ curvedns-keygen
+
+You will see that instantly a DNSCurve key will be generated. The output will look like this:
+
+    Because curvedns-keygen uses random data to generate the keypair, each and every run of curvedns-keygen will give entirely different key material.
+
+	DNS public key:    uz57bx3x9xp2dqpdfvurvypljbzm8j1fqxdv2s0gvffqcr6351bxvg
+	Hex public key:    47f5d153af82d9cadad677fb2aa1fa13c1d06c675b60e0766b765d334a507d3b
+	Hex secret key:    49aa3359894f2a5467aa0cf453f0149a02a3d4e9acf67e146db1a7501340bd20
+
+The first key is the public part represented using base32-encoding. This key will be used as the forwarding name server's name.
+
+The second line is the public key part only this time represented in hexadecimal notation.
+
+The third line is the private part. This should be the contents of the CURVEDNS_PRIVATE_KEY environment option. It should be clear that this secret key should be protected, it entangles the security for your DNSCurve enabled server. Making a backup (at a secure location of course) is also recommended, because losing the private part of the key would make the server unusable.
+
+Remark that curvedns-keygen does not save any of the information it outputs. So you should be the person to do this. There is however a way to let curvedns-keygen handle the storing of this information, the next section will discuss this.
+
+
+## RUNNING CurveDNS
+
+If your nameserver is called ns1.example.org, running curvedns-keygen to generate a key for the just created CurveDNS environment works like this:
+
+(As root)
+	$ curvedns-keygen /etc/curvedns ns1.example.org
+
+	Authoritative name server name:
+	uz5svv9j6p8j05ms321fjtdms06tw23uv5ck1n2650847c8t29up49.ns1.example.org
+	Hex public key:
+	78ef044d4510948987080d66363130998ba177593150610a40e42c9445d29524
+	Hex secret key:
+	a6b1ca8efeb63024d5e92a356fb8967b091421ad9516006e339dcf495b49e13e
+
+Besides being displayed here, the private key was also written to /etc/curvedns/env/CURVEDNS_PRIVATE_KEY, so it can be used inside CurveDNS environment. If you look back at the configuration options, you can specify all the mentioned environment options in the /etc/curvedns/env directory. So if you want to enable debug mode — which is recommended to easily test your new installation –, you can do this:
+
+	$ echo 5 > /etc/curvedns/env/CURVEDNS_DEBUG
+
+All other CURVEDNS_* environment options can be set like this.
+
+We are now ready to run CurveDNS, so we link CurveDNS' towards the daemontools supervise service directory.
+
+The path for this differs on systems. If you installed daemontools from source, it will be /service, while for example Debian related releases have their service directory under /etc/service. So check before running the command below.
+
+	ln -s /etc/curvedns /service/curvedns
+
+In a few seconds curvedns should pop up in your process list. If it does not, please check the readproctitle process whether any errors occurred (ps ax | grep readproctitle).
+
+Logging of CurveDNS can be found in /etc/curvedns/log/main/current. The main directory is an (by multilog) automatically rotated log file directory. To see what CurveDNS is doing live, run the following:
+
+    When no specific debug mode (i.e. the DNSCURVE_DEBUG environment variable) has been specified, CurveDNS will only log something when an error occurred. As mentioned before, it is good to temporarily set the debug level to 4 (info), so you can see what is happening.
+
+	$ tail -f /etc/curvedns/log/main/current | tai64nlocal
+
+tai64nlocal transforms the TAI timestamp (that multilog adds) to a human readable date. While this is running in a terminal, it is time to test your CurveDNS installation:
+
+	$ dig example.org @127.0.0.1
+
+Where example.org is served by the authoritative name server you are forwarding for, and 127.0.0.1 is the address of this CurveDNS instance. The terminal running the tail should now report several information and you should of course receive a correct answer for the A-type query for example.org.
+
+##Publishing keys
+
+Publishing keys is really easy with DNSCurve. The only thing you have to do is notify an upper zone data manager (probably a registry) that you have a new NS record for your zone.
+
+If your name server was named ns1.example.org before, its DNSCurve enabled name would (for example) be: uz5svv9j6p8j05ms321fjtdms06tw23uv5ck1n2650847c8t29up49.ns1.example.org. (This name is generated by the curvedns-keygen utility.) If you send this name towards the upper zone data manager, it automatically encapsulates your 255-bit public DNSCurve elliptic curve key. Making the world aware your name server is DNSCurve capable.
+
+
+
+
+## MANPAGE AUTHOR
+
+Stephane Neveu <stefneveu@gmail.com>
+
+## SEE ALSO
+
+
+[Installation and configuration from github](https://github.com/curvedns/curvedns/blob/master/INSTALL.md)
+
+
