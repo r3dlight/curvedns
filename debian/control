@@ -19,7 +19,8 @@ Depends:
  ${misc:Depends},
  libev,
  libnacl,
- daemontools
+ daemontools,
+ adduser
 Description:  A DNSCurve Forwarding Name Server
  DNSCurve uses high-speed high-security elliptic-curve cryptography to 
  drastically improve every dimension of DNS security.
