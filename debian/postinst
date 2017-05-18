@@ -4,7 +4,7 @@ if ! getent group curvedns > /dev/null 2>&1; then
   addgroup --quiet --system curvedns >/dev/null
 fi
 if ! getent passwd curvedns > /dev/null 2>&1; then
-   /usr/sbin/adduser --quiet --system --home /etc/curvedns --ingroup curvedns -no-create-home --shell /bin/false curvedns
+   adduser --quiet --system --home /etc/curvedns --ingroup curvedns -no-create-home --shell /bin/false curvedns
 fi
 chown curvedns:curvedbs -R /etc/curvedns /var/log/curvedns
 
