@@ -48,7 +48,7 @@ If your nameserver is called ns1.example.org, running curvedns-keygen to generat
 	Hex secret key:
 	a6b1ca8efeb63024d5e92a356fb8967b091421ad9516006e339dcf495b49e13e
 
-Besides being displayed here, the private key was also written to /etc/curvedns/env/CURVEDNS_PRIVATE_KEY, so it can be used inside CurveDNS environment. If you look back at the configuration options, you can specify all the mentioned environment options in the /etc/curvedns/env directory. So if you want to enable debug mode — which is recommended to easily test your new installation –, you can do this:
+Besides being displayed here, the private key was also written to /etc/curvedns/env/CURVEDNS_PRIVATE_KEY, so it can be used inside CurveDNS environment. If you look back at the configuration options, you can specify all the mentioned environment options in the /etc/curvedns/env directory. So if you want to enable debug mode - which is recommended to easily test your new installation -, you can do this:
 
 	$ echo 5 > /etc/curvedns/env/CURVEDNS_DEBUG
 

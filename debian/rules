@@ -19,6 +19,7 @@ override_dh_auto_configure:
 override_dh_auto_build:
 	dh_auto_build
 	ronn -r $(CURDIR)/debian/curvedns.8.ronn
+	ronn -r $(CURDIR)/debian/curvedns-keygen.1.ronn
 
 %:
 	dh $@ 

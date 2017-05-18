@@ -11,7 +11,7 @@ curvedns(8) is the first publicly released forwarding implementation that implem
 
 -   <listening-IPs>: The IP addresses on which CurveDNS should listen. If you have more IP addresses, separate them by a comma (,). Notice both IPv4 and IPv6 addresses can be used. Valid inputs are for example: 192.168.0.1 and fe80::1,10.3.11.86 If you want CurveDNS to listen on all IP addresses use 0.0.0.0 (for IPv4 hosts) or :: (for IPv6 hosts).
 
--   <listening port>: The port number on which CurveDNS should listen. If you want to use a port number beneath 1024, you must be root — nevertheless, CurveDNS will eventually drop the root privileges once it has done all the tasks that need root.
+-   <listening port>: The port number on which CurveDNS should listen. If you want to use a port number beneath 1024, you must be root - nevertheless, CurveDNS will eventually drop the root privileges once it has done all the tasks that need root.
 
 -   <target DNS server IP>: This is the IP address of the authoritative name server we are forwarding non-DNSCurve queries to. This can be either an IPv4 or IPv6 address.
 
