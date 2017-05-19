@@ -1,4 +1,0 @@
-curvedns-keygen /usr/sbin
-curvedns /usr/sbin
-contrib/curvedns-run /etc/curvedns/curvedns-run
-contrib/curvedns-log-run /etc/curvedns/curvedns-log
