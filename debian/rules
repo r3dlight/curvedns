@@ -4,7 +4,8 @@
 #export DH_VERBOSE = 1
 
 #export DEB_BUILD_MAINT_OPTIONS = hardening=-pie,-format,+fortify,+stackprotector,+relro,+bindnow
-export DEB_BUILD_MAINT_OPTIONS = hardening=+pie,-format,+fortify,+stackprotector,+relro,+bindnow
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+pie,-format,+fortify,+stackprotector,+relro,+bindnow
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 export DEB_BUILD_HARDENING=1
 
 
