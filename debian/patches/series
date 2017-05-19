@@ -1,1 +1,3 @@
 hardening_support.patch
+0001-chroot.patch
+0002-nonce-separation.patch
