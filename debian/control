@@ -1,26 +1,35 @@
 Source: curvedns
-Section: admin
-Priority: optional
-Maintainer: NEVEU Stephane <stefneveu@gmail.com>
+Section: net
+Priority: standard
 Build-Depends:
  debhelper (>=10),
  libev-dev,
  libnacl-dev,
  ruby-ronn
-Standards-Version: 3.9.8
+Maintainer: NEVEU Stephane <stefneveu@gmail.com>
 Homepage: http://curvedns.on2it.net/
+Standards-Version: 3.9.8
 Vcs-Git: https://github.com/r3dlight/curvedns.git
 Vcs-Browser: https://github.com/r3dlight/curvedns
 
 Package: curvedns
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
 Architecture: any
-Depends: 
- ${shlibs:Depends}, 
- ${misc:Depends},
- libev,
- libnacl,
- daemontools,
- adduser
-Description:  A DNSCurve Forwarding Name Server
- DNSCurve uses high-speed high-security elliptic-curve cryptography to 
- drastically improve every dimension of DNS security.
+Description: DNS/DNSCurve forwarding name server - binaries
+ The curvedns package provides software for DNS/DNSCurve.
+ .
+ CurveDNS is the first publicly released forwarding implementation
+ that implements the DNSCurve protocol
+
+Package: curvedns-run
+Depends: adduser,
+         daemontools-run,
+         curvedns,
+         ${misc:Depends},
+Architecture: all
+Description: DNS/DNSCurve forwarding name server - running under daemontools
+ The curvedns package provides software for DNS/DNSCurve.
+ .
+ curvedns-run automatically sets up the curvedns package to provide a
+ curvedns service.
