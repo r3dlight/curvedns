@@ -15,6 +15,8 @@ Vcs-Browser: https://github.com/r3dlight/curvedns
 Package: curvedns
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+         adduser,
+         daemontools-run
 Architecture: any
 Description: DNS/DNSCurve forwarding name server - binaries
  The curvedns package provides software for DNS/DNSCurve.
@@ -22,14 +24,3 @@ Description: DNS/DNSCurve forwarding name server - binaries
  CurveDNS is the first publicly released forwarding implementation
  that implements the DNSCurve protocol
 
-Package: curvedns-run
-Depends: adduser,
-         daemontools-run,
-         curvedns,
-         ${misc:Depends},
-Architecture: all
-Description: DNS/DNSCurve forwarding name server - running under daemontools
- The curvedns package provides software for DNS/DNSCurve.
- .
- curvedns-run automatically sets up the curvedns package to provide a
- curvedns service.
