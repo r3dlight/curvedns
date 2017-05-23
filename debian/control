@@ -14,10 +14,8 @@ Vcs-Browser: https://github.com/r3dlight/curvedns
 
 Package: curvedns
 Depends: adduser,
-         daemontools-run,
          ${misc:Depends},
          ${shlibs:Depends},
-         adduser,
          daemontools-run
 Architecture: any
 Description: DNS/DNSCurve forwarding name server - binaries
