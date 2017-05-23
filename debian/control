@@ -15,7 +15,6 @@ Vcs-Browser: https://github.com/r3dlight/curvedns
 Package: curvedns
 Depends: adduser,
          daemontools-run,
-         curvedns,
          ${misc:Depends},
          ${shlibs:Depends},
          adduser,
