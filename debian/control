@@ -5,7 +5,8 @@ Build-Depends:
  debhelper (>=10),
  libev-dev,
  libnacl-dev,
- ruby-ronn
+ ruby-ronn,
+ dh-systemd
 Maintainer: NEVEU Stephane <stefneveu@gmail.com>
 Homepage: http://curvedns.on2it.net/
 Standards-Version: 3.9.8
