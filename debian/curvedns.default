@@ -1,0 +1,11 @@
+#Provide a listening IP or a list of IPs comma separated if needed
+$LISTENING_IPS="127.0.0.1"
+
+#Provide a port to listen to 
+$PORT="53"
+
+#Provide the target DNS server IP
+$TARGET_DNS_IP="127.0.0.2" 
+
+# Provide the target DNS port
+$TARGET_DNS_PORT="53"

@@ -1,0 +1,12 @@
+[Unit]
+Description=curvedns daemon
+After=network.target
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/default/curvedns
+ExecStart=/usr/bin/curvedns $LISTENING_IPS $PORT $TARGET_DNS_IP $TARGET_DNS_PORT
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
