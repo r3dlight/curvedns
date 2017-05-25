@@ -17,7 +17,8 @@ Package: curvedns
 Depends: adduser,
          ${misc:Depends},
          ${shlibs:Depends},
-         daemontools-run
+         daemontools-run,
+	 lsb-base (>=3.0-6)
 Architecture: any
 Description: DNS/DNSCurve forwarding name server - binaries
  The curvedns package provides software for DNS/DNSCurve.
