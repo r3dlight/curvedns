@@ -10,11 +10,9 @@ Subject: nonce separation
  misc.h     |   5 +-
  4 files changed, 170 insertions(+), 16 deletions(-)
 
-diff --git a/curvedns.c b/curvedns.c
-index 668d1a3..d31a89c 100644
 --- a/curvedns.c
 +++ b/curvedns.c
-@@ -65,10 +65,14 @@ static int usage(const char *argv0) {
+@@ -65,10 +65,14 @@
  	debug_log(DEBUG_FATAL, " [CURVEDNS_TCP_TIMEOUT]\n\tNumber of seconds before TCP session to client times out (default: 60.0)\n");
  	debug_log(DEBUG_FATAL, " [CURVEDNS_SHARED_SECRETS]\n\tNumber of shared secrets that can be cached (default: 5000)\n");
  	debug_log(DEBUG_FATAL, " [CURVEDNS_DEBUG]\n\tDebug level, 1: fatal, 2: error, 3: warning, 4: info, 5: debug (default: 2)\n");
@@ -29,7 +27,7 @@ index 668d1a3..d31a89c 100644
  	int tmpi;
  	double tmpd;
  	char ip[INET6_ADDRSTRLEN];
-@@ -134,6 +138,18 @@ static int getenvoptions() {
+@@ -134,6 +138,18 @@
  		debug_log(DEBUG_INFO, "shared secret cache: %d positions\n", global_shared_secrets);
  	}
  
@@ -48,11 +46,9 @@ index 668d1a3..d31a89c 100644
  	return 1;
  }
  
-diff --git a/dnscurve.c b/dnscurve.c
-index cad596c..f151e60 100644
 --- a/dnscurve.c
 +++ b/dnscurve.c
-@@ -368,7 +368,7 @@ int dnscurve_reply_streamlined_query(event_entry_t *general_entry) {
+@@ -368,7 +368,7 @@
  	// Set everything for the encryption step:
  	memcpy(fullnonce, packet->nonce, 12);
  	time = ev_now(event_default_loop);
@@ -61,7 +57,7 @@ index cad596c..f151e60 100644
  
  	result = dnscurve_get_shared_secret(packet);
  	if ((result < 0) || packet->ispublic) {
-@@ -441,7 +441,7 @@ int dnscurve_reply_txt_query(event_entry_t *general_entry) {
+@@ -441,7 +441,7 @@
  	// Now write the streamline header:
  	memcpy(fullnonce, packet->nonce, 12);
  	time = ev_now(event_default_loop);
@@ -70,8 +66,6 @@ index cad596c..f151e60 100644
  
  	result = dnscurve_get_shared_secret(packet);
  	if ((result < 0) || packet->ispublic) {
-diff --git a/misc.c b/misc.c
-index 200825b..56b92e1 100644
 --- a/misc.c
 +++ b/misc.c
 @@ -34,6 +34,9 @@
@@ -84,7 +78,7 @@ index 200825b..56b92e1 100644
  #include "misc.h"
  #include "ip.h"
  
-@@ -101,6 +104,33 @@ int misc_getenv_key(const char *env, int mandatory, uint8_t *result) {
+@@ -101,6 +104,33 @@
  	return 1;
  }
  
@@ -118,24 +112,11 @@ index 200825b..56b92e1 100644
  int misc_char_hex(char in, uint8_t *out) {
  	if ((in >= '0') && (in <= '9')) {
  		*out = in - '0';
-@@ -221,20 +251,125 @@ unsigned int misc_crypto_random(unsigned int n) {
+@@ -221,20 +251,125 @@
  	return out[--outleft] % n;
  }
  
--// Make sure sizeof(nonce) >= 12
--void misc_crypto_nonce(uint8_t *nonce, void *time, int len) {
--	// We would like the first 64 bits to be time based.
--	// The last 32 bits can be random.
- 
--	// XXX: but dirty solution, nicer way?
--	if (len < 8) {
--		memcpy(nonce, time, len);
--	} else {
--		memcpy(nonce, time, 8);
--		len = 8;
--	}
--	for ( ; len < 12; len++)
--		nonce[len] = misc_crypto_random(256);
++
 +static void misc_uint32_pack(unsigned char *y, uint32_t x) {
 +        *y++ = x; x >>= 8;
 +        *y++ = x; x >>= 8;
@@ -219,7 +200,20 @@ index 200825b..56b92e1 100644
 +        }
 +}
 +
-+// Make sure sizeof(nonce) >= 12
+ // Make sure sizeof(nonce) >= 12
+-void misc_crypto_nonce(uint8_t *nonce, void *time, int len) {
+-	// We would like the first 64 bits to be time based.
+-	// The last 32 bits can be random.
+-
+-	// XXX: but dirty solution, nicer way?
+-	if (len < 8) {
+-		memcpy(nonce, time, len);
+-	} else {
+-		memcpy(nonce, time, 8);
+-		len = 8;
+-	}
+-	for ( ; len < 12; len++)
+-		nonce[len] = misc_crypto_random(256);
 +void misc_crypto_nonce(uint8_t *nonce) {
 +
 +        uint64_t x, newnoncecounter;
@@ -257,11 +251,9 @@ index 200825b..56b92e1 100644
  }
  
  static const uint8_t kValues[] = {
-diff --git a/misc.h b/misc.h
-index d76c0b2..6b6ae5b 100644
 --- a/misc.h
 +++ b/misc.h
-@@ -52,6 +52,8 @@ extern int misc_getenv_ip(const char *, int, anysin_t *);
+@@ -52,6 +52,8 @@
  extern int misc_getenv_int(const char *, int, int *);
  extern int misc_getenv_double(const char *, int, double *);
  extern int misc_getenv_key(const char *, int, uint8_t *);
@@ -270,7 +262,7 @@ index d76c0b2..6b6ae5b 100644
  
  extern int misc_char_hex(char, uint8_t *);
  extern int misc_hex_char(uint8_t, char *);
-@@ -65,6 +67,7 @@ extern void misc_randombytes(uint8_t *, unsigned long long);
+@@ -65,6 +67,7 @@
  
  extern int misc_crypto_random_init();
  extern unsigned int misc_crypto_random(unsigned int);
