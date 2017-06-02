@@ -6,6 +6,7 @@ After=network.target
 [Service]
 Type=forking
 EnvironmentFile=/etc/default/curvedns
+ExecStartPre=/usr/bin/test "$KEYS_GENERATED" != "0"
 ExecStart=/usr/sbin/curvedns $IP $PORT $REMOTEIP $REMOTEPORT
 Restart=on-failure
 
