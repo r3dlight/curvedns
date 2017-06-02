@@ -15,15 +15,4 @@ Last-Update: 2017-05-17
 +LDFLAGS+=-L$(NACLLIB) $(EVLDFLAGS)
  
  # do not edit below
- 
---- a/configure.curvedns
-+++ b/configure.curvedns
-@@ -20,7 +20,7 @@
- doMakefile() {
-   sed -e "s/@ABI@/$abi/g" \
-       -e "s/@CC@/$compiler/" \
--      -e "s/@CFLAGS@/$cflags/" \
-+      -e "s/@CFLAGS@/$CFLAGS $CPPFLAGS $cflags/" \
-           Makefile.in > Makefile
- }
- 
+
