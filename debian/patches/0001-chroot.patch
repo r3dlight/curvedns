@@ -1,14 +1,7 @@
-From 1c2dc3f7f32b336834d99d4dc0eec886b350ec28 Mon Sep 17 00:00:00 2001
-From: Jan Mojzis <jan.mojzis@gmail.com>
-Date: Thu, 23 Jun 2016 10:17:57 +0200
-Subject: chroot
-
----
- curvedns.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/curvedns.c b/curvedns.c
-index 8134896..668d1a3 100644
+Description: Add root option
+ This patch add support for chroot hardening.
+Author: Stephane Neveu
+Last-Update: 2017-06-02
 --- a/curvedns.c
 +++ b/curvedns.c
 @@ -57,6 +57,7 @@ static int usage(const char *argv0) {
