@@ -9,6 +9,9 @@ EnvironmentFile=/etc/default/curvedns
 ExecStartPre=/usr/bin/test "$KEYS_GENERATED" != "0"
 ExecStart=/usr/sbin/curvedns $IP $PORT $REMOTEIP $REMOTEPORT
 Restart=on-failure
+InaccessiblePaths=/proc
+SystemCallFilter=~ptrace
+PrivateDevices=yes
 
 [Install]
 WantedBy=multi-user.target
