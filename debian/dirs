@@ -1,4 +1,3 @@
 /etc/curvedns
 /etc/curvedns/env
-/etc/curvedns/root
 /var/log/curvedns
