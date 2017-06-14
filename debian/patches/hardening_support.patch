@@ -1,4 +1,4 @@
-Description: Add support for debian hardening flags
+Description: Add support for Debian hardening flags
  Update CFLAGS and LDFLAGS assignment to support integration
  of external variables.
 Author: Stéphane Neveu
