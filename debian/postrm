@@ -8,7 +8,6 @@ fi
 deluser --force curvedns 
 deluser --force curvednslog
 
-rm /etc/default/curvedns
 rm -rf /var/log/curvedns /etc/curvedns
 
 #DEBHELPER#
