@@ -7,8 +7,8 @@ After=network.target
 Type=simple
 EnvironmentFile=/etc/default/curvedns
 ExecStartPre=/usr/bin/test "$KEYS_GENERATED" != "0"
-ExecStartPre=envuidgid curvedns envdir /etc/curvedns/env
-ExecStart=/usr/sbin/curvedns $IP $PORT $REMOTEIP $REMOTEPORT
+ExecStartPre=envuidgid curvedns envdir /etc/curvedns/env curvedns-run
+#ExecStart=/usr/sbin/curvedns $IP $PORT $REMOTEIP $REMOTEPORT
 Restart=on-failure
 #InaccessiblePaths=/proc
 SystemCallFilter=~ptrace
