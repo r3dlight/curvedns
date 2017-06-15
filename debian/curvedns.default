@@ -2,16 +2,14 @@
 KEYS_GENERATED=0
 
 #Provide a listening IP or a list of IPs comma separated if needed
-IP="127.0.0.1"
+IP=127.0.0.1
 
 #Provide a port to listen to 
-PORT="53"
+PORT=53
 
 #Provide the target DNS server IP
-REMOTEIP="127.0.0.2" 
+REMOTEIP=127.0.0.2
 
 # Provide the target DNS port
-REMOTEPORT="53"
+REMOTEPORT=53
 
-UID="curvedns"
-GID="curvedns"
