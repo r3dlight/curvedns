@@ -12,3 +12,6 @@ REMOTEIP="127.0.0.2"
 
 # Provide the target DNS port
 REMOTEPORT="53"
+
+UID="curvedns"
+GID="curvedns"
