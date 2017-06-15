@@ -9,26 +9,26 @@ curvedns(8) -- high-speed high-security elliptic-curve cryptography DNS server
 
 curvedns(8) is the first publicly released forwarding implementation that implements the DNSCurve protocol.
 
--   <listening-IPs>: The IP addresses on which CurveDNS should listen. If you have more IP addresses, separate them by a comma (,). Notice both IPv4 and IPv6 addresses can be used. Valid inputs are for example: 192.168.0.1 and fe80::1,10.3.11.86 If you want CurveDNS to listen on all IP addresses use 0.0.0.0 (for IPv4 hosts) or :: (for IPv6 hosts).
+-   <listening-IPs>: This arguments MUST be set in /etc/default/curvedns and is called IP. The IP addresses on which CurveDNS should listen. If you have more IP addresses, separate them by a comma (,). Notice both IPv4 and IPv6 addresses can be used. Valid inputs are for example: 192.168.0.1 and fe80::1,10.3.11.86 If you want CurveDNS to listen on all IP addresses use 0.0.0.0 (for IPv4 hosts) or :: (for IPv6 hosts).
 
--   <listening port>: The port number on which CurveDNS should listen. If you want to use a port number beneath 1024, you must be root - nevertheless, CurveDNS will eventually drop the root privileges once it has done all the tasks that need root.
+-   <listening port>: This arguments MUST be set in /etc/default/curvedns and is called PORT. The port number on which CurveDNS should listen. If you want to use a port number beneath 1024, you must be root - nevertheless, CurveDNS will eventually drop the root privileges once it has done all the tasks that need root.
 
--   <target DNS server IP>: This is the IP address of the authoritative name server we are forwarding non-DNSCurve queries to. This can be either an IPv4 or IPv6 address.
+-   <target DNS server IP>: This arguments MUST be set in /etc/default/curvedns and is called REMOTEIP. This is the IP address of the authoritative name server we are forwarding non-DNSCurve queries to. This can be either an IPv4 or IPv6 address.
 
--   <target DNS server port>: The port number of the authoritative name server we are forwarding for. Usually this will be 53.
+-   <target DNS server port>: This arguments MUST be set in /etc/default/curvedns and is called REMOTEPORT. The port number of the authoritative name server we are forwarding for. Usually this will be 53.
 
-You will notice all the above discussed options are mandatory. CurveDNS will complain when some argument is missing.
+You will notice all the above discussed options are mandatory. CurveDNS will complain when some argument is missing. Once these parameters are configured in /etc/default/curvedns, you also MUST set KEYS_GENERATED=1 to make systemd able to start it.
 
 
 ## ENVIRONMENT VARIABLES
 
 Now that the arguments options have been discussed, it is time to look at the settings that can be passed using the program's environment. We start by discussing the options that are mandatory, i.e. when CurveDNS is started these environment variables must exist.
+The DAEMON WILL NOT START until your CURVEDNS_PRIVATE_KEY is created. Please refer to man (1) curvedns-keygen.
 
 -    <CURVEDNS_PRIVATE_KEY>: the hexadecimal representation of the server's private (secret) key.
--    <UID>: the user id of the user we are switching to when we have done all root specific actions.
--    <GID>: the group id of this same user.
 
 The following environment options are optional, but might be handy in some cases or when you are very specific in what you want CurveDNS to do. Notice that when you do not specify any of these options in the environment, the suffixing default value will be used.
+You might want to change these variables with the echo command in /etc/curvedns/env/<VARIABLE_NAME>, for exemple echo 5 > /etc/curvedns/env/CURVEDNS_DEBUG. 
 
 -    <CURVEDNS_INTERNAL_TIMEOUT>: number of seconds when to consider the target server has timeout (default: 1.2)
 
