@@ -1,11 +1,6 @@
 #!/usr/bin/make -f
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-export DEB_BUILD_HARDENING=1
-
-
-DPKG_EXPORT_BUILDFLAGS = 1
-include /usr/share/dpkg/default.mk
 
 #Custom configure
 override_dh_auto_configure:
