@@ -6,7 +6,6 @@ After=network.target
 [Service]
 Type=simple
 EnvironmentFile=/etc/default/curvedns
-#ExecStartPre=/usr/bin/test "$KEYS_GENERATED" != "0"
 ExecStart=/usr/bin/envuidgid curvedns envdir /etc/curvedns/env /bin/sh -c "exec /usr/sbin/curvedns ${IP} ${PORT} ${REMOTEIP} ${REMOTEPORT}"
 ExecStartPost=/usr/bin/setuidgid curvednslog multilog t n20 s99999999 /var/log/curvedns
 Restart=on-failure

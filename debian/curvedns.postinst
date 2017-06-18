@@ -1,17 +1,38 @@
 #!/bin/sh -e
+set -e
 
-# Source debconf library.
-. /usr/share/debconf/confmodule
+if [ x"$1" != "xconfigure" ]; then
+  exit 0
+fi
 
-# ask an fqdn
-db_input medium curvedns/ask_fqdn || true
-db_go
+if ! getent passwd curvednslog > /dev/null; then
+  adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --ingroup nogroup --gecos "curvednslog user" curvednslog
+fi
 
-# Generate key.
-db_get curvedns/ask_fqdn
-#if [ "$RET" = "false" ]; then
-#    # Poor misguided one..
-#    db_input high foo/why_debian_is_great || true
-#    db_go
-#fi
-echo $RET
+if ! getent passwd curvedns > /dev/null; then
+  adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --ingroup nogroup --gecos "curvedns user" curvedns
+fi
+
+chown -R curvednslog /var/log/curvedns
+
+if [ -e /service ]; then
+  servicedir="/service"
+fi
+if [ -e /etc/service ]; then
+  servicedir="/etc/service"
+fi
+[ x"${servicedir}" = x ] && exit 111
+
+DIR="/etc/curvedns/service"; export DIR
+for S in `ls -d ${DIR}/* 2>/dev/null`; do
+    B=`basename "${S}"`
+    if [ -e "${servicedir}/${DPKG_MAINTSCRIPT_PACKAGE}_${B}" ]; then
+        echo "${servicedir}/${DPKG_MAINTSCRIPT_PACKAGE}_${B} exist."
+    else
+        echo -n "linking: ${S} -> ${servicedir}/${DPKG_MAINTSCRIPT_PACKAGE}_${B}"
+        ln -s "${S}" "${servicedir}/${DPKG_MAINTSCRIPT_PACKAGE}_${B}"
+        echo ". done."
+    fi
+done
+
+#DEBHELPER#
