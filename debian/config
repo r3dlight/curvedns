@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+# Source debconf library.
+. /usr/share/debconf/confmodule
+
+# ask an fqdn
+db_input medium curvedns/ask_fqdn || true
+db_go
+
+# Generate key.
+db_get curvedns/ask_fqdn
+#if [ "$RET" = "false" ]; then
+#    # Poor misguided one..
+#    db_input high foo/why_debian_is_great || true
+#    db_go
+#fi
+echo $RET
