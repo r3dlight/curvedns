@@ -1,7 +1,11 @@
+#Default env config for CurveDNS.
+#
 #Provide a listening IP or a list of IPs comma separated if needed.
+#Default here is 127.0.0.1
 IP=127.0.0.1
 
 #Provide a port to listen to.
+#Default is 53 as usual
 PORT=53
 
 #Provide the target DNS server IP.
