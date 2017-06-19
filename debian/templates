@@ -1,18 +1,7 @@
-
-Template: curvedns/readme
-Type: text
-_Description: Please, do read the following:
- Welcome to CurveDNS installation for Debian ! 
- CurveDNS works using environnement variables. 
- There is no /etc/curvedns/curvedns.conf. You must configure CurveDNS
- using /etc/default/curvedns file. Some others variables might be set
- using /etc/curvedns/env/ directory. Please read man(8)curvedns for further information.
-
 Template: curvedns/ask_fqdn
 Type: string
 _Description: Please enter a Fully Qualified Domain Name (FQDN):
  Before starting curvedns, you must provide your own FQDN.
  It will generate private key in /etc/curvedns/env/CURVEDNS_PRIVATE_KEY
  See man(1)curvedns-keygen for more information.
- Without this private key, curvedns will not be able to start.
-
+ Next, edit /etc/default/curvedns to fit your needs.
