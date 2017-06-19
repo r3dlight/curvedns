@@ -1,0 +1,50 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the curvedns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: curvedns\n"
+"Report-Msgid-Bugs-To: curvedns@packages.debian.org\n"
+"POT-Creation-Date: 2017-06-19 08:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid "Please enter a Fully Qualified Domain Name (FQDN)."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid ""
+"Before starting curvedns, you must provide your own FQDN. It will generate "
+"private key in /etc/curvedns/env/CURVEDNS_PRIVATE_KEY See man(1)curvedns-"
+"keygen for more information. Without this private key, curvedns will not be "
+"able to start."
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../templates:2001
+msgid "Please pay attention."
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../templates:2001
+msgid ""
+"CurveDNS works using environnement variables.  There is no /etc/curvedns/"
+"curvedns.conf. You must configure CurveDNS using /etc/default/curvedns file. "
+"Some others variables might be set using /etc/curvedns/env/ directory. "
+"Please read the man for further information."
+msgstr ""
