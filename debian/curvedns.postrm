@@ -5,6 +5,9 @@ if [ x"$1" != "xpurge" ]; then
     exit 0
 fi
 
+deluser curvedns
+deluser curvednslog
+
 rm -rf /var/log/curvedns /etc/curvedns
 
 #DEBHELPER#
