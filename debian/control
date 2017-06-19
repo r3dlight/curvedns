@@ -8,6 +8,7 @@ Build-Depends:
  libev-dev,
  libnacl-dev,
  ruby-ronn,
+ po-debconf,
  dh-systemd
 Homepage: http://curvedns.on2it.net/
 Standards-Version: 3.9.8
