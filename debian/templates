@@ -1,6 +1,6 @@
 
 Template: curvedns/note
-Type: note
+Type: text
 _Description: Do read the following:
  CurveDNS works using environnement variables. 
  There is no /etc/curvedns/curvedns.conf. You must configure CurveDNS
