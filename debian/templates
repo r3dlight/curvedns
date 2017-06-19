@@ -1,3 +1,12 @@
+
+Template: curvedns/note
+Type: note
+_Description: Do read the following:
+ CurveDNS works using environnement variables. 
+ There is no /etc/curvedns/curvedns.conf. You must configure CurveDNS
+ using /etc/default/curvedns file. Some others variables might be set
+ using /etc/curvedns/env/ directory. Please read the man for further information.
+
 Template: curvedns/ask_fqdn
 Type: string
 _Description: Please enter a Fully Qualified Domain Name (FQDN):
@@ -6,10 +15,3 @@ _Description: Please enter a Fully Qualified Domain Name (FQDN):
  See man(1)curvedns-keygen for more information.
  Without this private key, curvedns will not be able to start.
 
-Template: curvedns/note
-Type: note
-_Description: Please pay attention.
- CurveDNS works using environnement variables. 
- There is no /etc/curvedns/curvedns.conf. You must configure CurveDNS using
- /etc/default/curvedns file. Some others variables might be set using
- /etc/curvedns/env/ directory. Please read the man for further information.
