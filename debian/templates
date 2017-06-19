@@ -1,6 +1,6 @@
 Template: curvedns/ask_fqdn
 Type: string
-_Description: Please enter a Fully Qualified Domain Name (FQDN).
+_Description: Please enter a Fully Qualified Domain Name (FQDN):
  Before starting curvedns, you must provide your own FQDN.
  It will generate private key in /etc/curvedns/env/CURVEDNS_PRIVATE_KEY
  See man(1)curvedns-keygen for more information.
