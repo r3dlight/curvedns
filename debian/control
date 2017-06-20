@@ -17,11 +17,11 @@ Vcs-Browser: https://github.com/r3dlight/curvedns
 
 Package: curvedns
 Depends: adduser,
-         ${misc:Depends},
-         ${shlibs:Depends},
-         daemontools-run,
-	 debconf,
-	 lsb-base (>=3.0-6)
+ ${misc:Depends},
+ ${shlibs:Depends},
+ daemontools-run,
+  debconf,
+  lsb-base (>=3.0-6)
 Architecture: any
 Description: DNS/DNSCurve forwarding name server - binaries
  The curvedns package provides software for DNS/DNSCurve.
