@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: curvedns\n"
 "Report-Msgid-Bugs-To: curvedns@packages.debian.org\n"
-"POT-Creation-Date: 2017-06-19 08:52+0200\n"
+"POT-Creation-Date: 2017-06-19 21:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,31 +20,22 @@ msgstr ""
 #. Type: string
 #. Description
 #: ../templates:1001
-msgid "Please enter a Fully Qualified Domain Name (FQDN)."
+msgid "Fully Qualified Domain Name (FQDN):"
 msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:1001
 msgid ""
-"Before starting curvedns, you must provide your own FQDN. It will generate "
-"private key in /etc/curvedns/env/CURVEDNS_PRIVATE_KEY See man(1)curvedns-"
-"keygen for more information. Without this private key, curvedns will not be "
-"able to start."
+"Please specify the Fully Qualified Domain Name (FQDN) that curvedns will be "
+"available on. A corresponding private key will be generated in \"/etc/"
+"curvedns/env/CURVEDNS_PRIVATE_KEY\" - see curvedns-keygen(1)."
 msgstr ""
 
-#. Type: note
+#. Type: string
 #. Description
-#: ../templates:2001
-msgid "Please pay attention."
-msgstr ""
-
-#. Type: note
-#. Description
-#: ../templates:2001
+#: ../templates:1001
 msgid ""
-"CurveDNS works using environnement variables.  There is no /etc/curvedns/"
-"curvedns.conf. You must configure CurveDNS using /etc/default/curvedns file. "
-"Some others variables might be set using /etc/curvedns/env/ directory. "
-"Please read the man for further information."
+"Next, edit \"/etc/default/curvedns\" to fit your needs before starting the "
+"server."
 msgstr ""
