@@ -46,3 +46,16 @@ Last-Update: 2017-06-02
  	// Do exactly this ;]
  	debug_log(DEBUG_INFO, "main(): throwing away root privileges\n");
  	if (setgid(gid) != 0) {
+--- a/configure.nacl
++++ b/configure.nacl
+@@ -405,6 +405,10 @@
+               -o "$cmd" "$cmd.${language}" \
+               "$lib/$abi/lib${project}.a" $libs
+ 	    then
++              #Quick & dirty patch to copy debian libnacl.a into the build tree
++	      rm "$lib/$abi/lib${project}.a"
++	      cp /usr/bin/libnacl.a "$lib/$abi/"
++	      #EOP
+ 	      case "$bintype" in
+ 	        commandline) cp -p "$cmd" "$bin/$cmd" ;;
+ 		tests) "./$cmd" | cmp - "$cmd.out" || "./$cmd" ;;
