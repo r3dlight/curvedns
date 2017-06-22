@@ -5,7 +5,7 @@ if [ x"$1" = "xpurge" ]; then
   deluser curvedns || true
   deluser curvednslog || true
   rm -rf /var/log/curvedns /etc/curvedns
-  echo PURGE | debconf-communicate curvedns
+  echo PURGE | debconf-communicate curvedns || true
 fi
 
 #DEBHELPER#
