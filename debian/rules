@@ -5,7 +5,7 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 #Custom configure
 override_dh_auto_configure:
 	 #$(CURDIR)/configure.nacl
-	 $(CURDIR)/configure.curvedns
+	 #$(CURDIR)/configure.curvedns
 
 #Building manpages
 override_dh_auto_build:
