@@ -1,0 +1,44 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -18,7 +18,7 @@
+ 
+ # do not edit below
+ 
+-EXTRALIB=-lev
++EXTRALIB=-lev -lsodium
+ 
+ TARGETS=curvedns-keygen curvedns
+ 
+--- a/cache_hashtable.h
++++ b/cache_hashtable.h
+@@ -43,7 +43,7 @@
+ #include <string.h>
+ 
+ #include <ev.h>
+-#include "crypto_box_curve25519xsalsa20poly1305.h"
++#include "sodium.h"
+ #include "debug.h"
+ 
+ // The cache mechanism isn't really general, it is focused
+--- a/curvedns-keygen.c
++++ b/curvedns-keygen.c
+@@ -41,7 +41,7 @@
+ #include <sys/stat.h>
+ #include <sys/types.h>
+ 
+-#include "crypto_box_curve25519xsalsa20poly1305.h"
++#include "sodium.h"
+ #include "debug.h"
+ #include "misc.h"
+ 
+--- a/dnscurve.h
++++ b/dnscurve.h
+@@ -43,7 +43,7 @@
+ #include <string.h>
+ #include <errno.h>
+ 
+-#include "crypto_box_curve25519xsalsa20poly1305.h"
++#include "sodium.h"
+ #include "debug.h"
+ #include "event.h"
+ 
