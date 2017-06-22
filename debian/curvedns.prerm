@@ -1,7 +1,7 @@
 #!/bin/sh -e
 set -e
 
-  if [ x"$1" != "xremove" -a x"$1" != "xpurge" ]; then
+if [ x"$1" = "xremove" -a x"$1" = "xpurge" ]; then
 
   if [ -e /etc/service ]; then
     servicedir="/etc/service"
