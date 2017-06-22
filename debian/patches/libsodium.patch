@@ -1,3 +1,8 @@
+Description: Add support for libsodium-dev
+ Update cache_hashtable.h dnscurve.h and
+ curvedns-keygen.c with sodium.h.
+Author: Stéphane Neveu
+Last-Update: 2017-05-22
 --- a/Makefile.in
 +++ b/Makefile.in
 @@ -18,7 +18,7 @@
