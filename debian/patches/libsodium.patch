@@ -3,17 +3,6 @@ Description: Add support for libsodium-dev
  curvedns-keygen.c with sodium.h.
 Author: Stéphane Neveu
 Last-Update: 2017-05-22
---- a/Makefile.in
-+++ b/Makefile.in
-@@ -18,7 +18,7 @@
- 
- # do not edit below
- 
--EXTRALIB=-lev
-+EXTRALIB=-lev -lsodium
- 
- TARGETS=curvedns-keygen curvedns
- 
 --- a/cache_hashtable.h
 +++ b/cache_hashtable.h
 @@ -43,7 +43,7 @@
