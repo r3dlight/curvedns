@@ -7,3 +7,10 @@ _Description: Fully Qualified Domain Name (FQDN):
  .
  Next, edit "/etc/default/curvedns" to fit your needs before starting the
  server.
+
+Template: curvedns/ask_again
+Type: string
+_Description: Fully Qualified Domain Name (FQDN):
+ Error in parsing your Fully Qualified Domain Name (FQDN). 
+ Please check your syntax or try again.
+ .
