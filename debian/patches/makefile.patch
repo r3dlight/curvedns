@@ -19,7 +19,7 @@ Last-Update: 2017-06-22
 +#EVLDFLAGS=-L$(EV)/lib
 +
 +CC?=gcc
-+CFLAGS?= -O3 -fomit-frame-pointer -funroll-loops $(CDNSCFLAGS) $(EVCFLAGS)
++CFLAGS?= -O3 -fomit-frame-pointer -funroll-loops $(CDNSCFLAGS) $(EVCFLAGS) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS)
 +LDFLAGS?=-L$(NACLLIB) $(EVLDFLAGS)
 +
 +# do not edit below

@@ -1,5 +1,4 @@
 makefile.patch
 spelling.patch
-hardening_support.patch
 chroot.patch
 libsodium.patch
