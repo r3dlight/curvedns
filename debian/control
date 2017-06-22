@@ -6,7 +6,7 @@ Uploaders: NEVEU Stephane <stefneveu@gmail.com>
 Build-Depends:
  debhelper (>=10),
  libev-dev,
- libnacl-dev,
+ libsodium-dev,
  ruby-ronn,
  po-debconf,
  dh-systemd
@@ -19,7 +19,7 @@ Package: curvedns
 Depends: adduser,
  ${misc:Depends},
  ${shlibs:Depends},
- daemontools-run,
+  daemontools-run,
   debconf,
   lsb-base (>=3.0-6)
 Architecture: any
