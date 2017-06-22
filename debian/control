@@ -21,6 +21,7 @@ Depends: adduser,
  ${shlibs:Depends},
   daemontools-run,
   debconf,
+  grep,
   lsb-base (>=3.0-6)
 Architecture: any
 Description: DNS/DNSCurve forwarding name server - binaries
