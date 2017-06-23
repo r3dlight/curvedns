@@ -1,6 +1,7 @@
 Description: Add support for libsodium-dev
  Update cache_hashtable.h dnscurve.h and
  curvedns-keygen.c with sodium.h.
+ This patch is based on vsevolod@FreeBSD.org work.
 Author: Stéphane Neveu
 Last-Update: 2017-05-22
 --- a/cache_hashtable.h

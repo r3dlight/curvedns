@@ -1,5 +1,6 @@
 Description: Create a Makefile
  This patch generate a Makefile without configure.curvedns.
+ This patch is based on vsevolod@FreeBSD.org work.
 Author: Stephane Neveu
 Last-Update: 2017-06-22
 --- /dev/null
