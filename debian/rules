@@ -14,9 +14,11 @@ override_dh_auto_build:
 	ronn -r $(CURDIR)/debian/curvedns-keygen.1.ronn
 
 
-%:
-	dh $@
-
-
 clean:
 	debconf-updatepo
+
+binary-indep: 
+	dh_installdebconf
+
+%:
+	dh $@
