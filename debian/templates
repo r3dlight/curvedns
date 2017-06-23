@@ -5,7 +5,10 @@ _Description: Fully Qualified Domain Name (FQDN):
  be available on. A corresponding private key will be generated in
  "/etc/curvedns/env/CURVEDNS_PRIVATE_KEY" - see curvedns-keygen(1).
  .
- Next, edit "/etc/default/curvedns" to fit your needs before starting the
+ You should also save your authoritative name server name, DNS public key
+ and secret key somewhere safe.
+ .
+ Next, edit "/etc/default/curvedns" to fit your needs before restarting the
  server.
 
 Template: curvedns/ask_again
