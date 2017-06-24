@@ -1,8 +1,8 @@
 #!/bin/sh -e
 set -e
-
+set -x
 # Source debconf library.
-. /usr/share/debconf/confmodule
+#. /usr/share/debconf/confmodule
 
 
 if [ x"$1" = "xconfigure" ]; then
@@ -14,7 +14,11 @@ if [ x"$1" = "xconfigure" ]; then
   if ! getent passwd curvedns > /dev/null; then
     adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --ingroup nogroup --gecos "curvedns user" curvedns
   fi
-
+  
+  echo "\nUID for curvedns\n" >> /etc/default/curvedns
+  echo UID=`id -u curvedns` >> /etc/default/curvedns
+  echo "\nGID for curvedns\n" >> /etc/default/curvedns
+  echo GID=`id -g curvedns` >> /etc/default/curvedns
   chown -R curvednslog /var/log/curvedns
 
   if [ -e /service ]; then
