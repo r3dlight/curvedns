@@ -7,41 +7,15 @@ set -x
 
 if [ x"$1" = "xconfigure" ]; then
 
-  if ! getent passwd curvednslog > /dev/null; then
-    adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --ingroup nogroup --gecos "curvednslog user" curvednslog
-  fi
-
   if ! getent passwd curvedns > /dev/null; then
     adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --ingroup nogroup --gecos "curvedns user" curvedns
   fi
-  
-  echo "\n#UID for curvedns\n" >> /etc/default/curvedns
+  echo "#Do not edit bellow if not sure\n"
+  echo "#UID of curvedns user.\n" >> /etc/default/curvedns
   echo UID=`id -u curvedns` >> /etc/default/curvedns
-  echo "\n#GID for curvedns\n" >> /etc/default/curvedns
+  echo "#GID of curvedns user.\n" >> /etc/default/curvedns
   echo GID=`id -g curvedns` >> /etc/default/curvedns
-  echo "\n#Hex private key for curvedns\n" >> /etc/default/curvedns
-  echo "\nCURVEDNS_PRIVATE_KEY=`cat /etc/curvedns/env/CURVEDNS_PRIVATE_KEY`" >> /etc/default/curvedns
-  chown -R curvednslog /var/log/curvedns
+  echo "#Hex private key for curvedns\n" >> /etc/default/curvedns
+  echo "CURVEDNS_PRIVATE_KEY=`cat /etc/curvedns/env/CURVEDNS_PRIVATE_KEY`" >> /etc/default/curvedns
 
-  if [ -e /service ]; then
-    servicedir="/service"
-  fi
-  if [ -e /etc/service ]; then
-    servicedir="/etc/service"
-  fi
-  [ x"${servicedir}" = x ] && exit 111
-
-  DIR="/etc/curvedns/service"; export DIR
-  for S in `ls -d ${DIR}/* 2>/dev/null`; do
-      B=`basename "${S}"`
-      if [ -e "${servicedir}/${DPKG_MAINTSCRIPT_PACKAGE}_${B}" ]; then
-          echo "${servicedir}/${DPKG_MAINTSCRIPT_PACKAGE}_${B} exist."
-      else
-          echo -n "linking: ${S} -> ${servicedir}/${DPKG_MAINTSCRIPT_PACKAGE}_${B}"
-          ln -s "${S}" "${servicedir}/${DPKG_MAINTSCRIPT_PACKAGE}_${B}"
-          echo ". done."
-      fi
-  done
-
-fi
 #DEBHELPER#
