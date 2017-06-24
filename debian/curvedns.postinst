@@ -10,6 +10,7 @@ if [ x"$1" = "xconfigure" ]; then
   if ! getent passwd curvedns > /dev/null; then
     adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --ingroup nogroup --gecos "curvedns user" curvedns
   fi
+
   echo "#UID of curvedns user.\n" >> /etc/default/curvedns
   echo "UID=`id -u curvedns`" >> /etc/default/curvedns
   echo "#GID of curvedns user.\n" >> /etc/default/curvedns
@@ -31,6 +32,6 @@ if [ x"$1" = "xconfigure" ]; then
   echo "#CURVEDNS_DEBUG=5" >> /etc/default/curvedns
   echo "#The IP address CurveDNS will use as source IP address when it forwards the query to the authoritative name server (default: let kernel decide).\n"
   echo "#CURVEDNS_SOURCE_IP=xx.xx.xx.xx" >> /etc/default/curvedns
-
+fi
 
 #DEBHELPER#
