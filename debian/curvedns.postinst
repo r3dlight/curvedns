@@ -15,10 +15,12 @@ if [ x"$1" = "xconfigure" ]; then
     adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --ingroup nogroup --gecos "curvedns user" curvedns
   fi
   
-  echo "\nUID for curvedns\n" >> /etc/default/curvedns
+  echo "\n#UID for curvedns\n" >> /etc/default/curvedns
   echo UID=`id -u curvedns` >> /etc/default/curvedns
-  echo "\nGID for curvedns\n" >> /etc/default/curvedns
+  echo "\n#GID for curvedns\n" >> /etc/default/curvedns
   echo GID=`id -g curvedns` >> /etc/default/curvedns
+  echo "\n#Hex private key for curvedns\n" >> /etc/default/curvedns
+  echo "\nCURVEDNS_PRIVATE_KEY=`cat /etc/curvedns/env/CURVEDNS_PRIVATE_KEY`" >> /etc/default/curvedns
   chown -R curvednslog /var/log/curvedns
 
   if [ -e /service ]; then
