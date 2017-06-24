@@ -28,7 +28,7 @@ The DAEMON WILL NOT START until your CURVEDNS_PRIVATE_KEY is created. Please ref
 -    <CURVEDNS_PRIVATE_KEY>: the hexadecimal representation of the server's private (secret) key.
 
 The following environment options are optional, but might be handy in some cases or when you are very specific in what you want CurveDNS to do. Notice that when you do not specify any of these options in the environment, the suffixing default value will be used.
-You might want to change these variables with the echo command in /etc/curvedns/env/<VARIABLE_NAME>, for exemple echo 5 > /etc/curvedns/env/CURVEDNS_DEBUG. 
+You might want to change these variables with the echo command in /etc/default/curvedns. 
 
 -    <CURVEDNS_INTERNAL_TIMEOUT>: number of seconds when to consider the target server has timeout (default: 1.2)
 
