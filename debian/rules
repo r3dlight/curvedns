@@ -18,9 +18,6 @@ override_dh_auto_build:
 clean:
 		debconf-updatepo
 
-binary-indep: 
-		dh_installdebconf
-
 %:
 		dh $@
 
