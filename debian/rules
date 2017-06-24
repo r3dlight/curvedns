@@ -1,22 +1,15 @@
 #!/usr/bin/make -f
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-DPKG_EXPORT_BUILDFLAGS = 1
-include /usr/share/dpkg/buildflags.mk
 
-#Custom configure
-#override_dh_auto_configure:
-	 #$(CURDIR)/configure.nacl
-	 #$(CURDIR)/configure.curvedns
 
 %:
 		dh $@
 
 #Building manpages
-override_dh_auto_build:
-	#dh_auto_build
-	make
+override_dh_installman:
 	ronn -r $(CURDIR)/debian/curvedns.8.ronn
 	ronn -r $(CURDIR)/debian/curvedns-keygen.1.ronn
+	dh_installman
 
 
