@@ -9,15 +9,13 @@ include /usr/share/dpkg/buildflags.mk
 	 #$(CURDIR)/configure.nacl
 	 #$(CURDIR)/configure.curvedns
 
+%:
+		dh $@
+
 #Building manpages
 override_dh_auto_build:
 	dh_auto_build
 	ronn -r $(CURDIR)/debian/curvedns.8.ronn
 	ronn -r $(CURDIR)/debian/curvedns-keygen.1.ronn
 
-clean:
-		debconf-updatepo
-
-%:
-		dh $@
 
