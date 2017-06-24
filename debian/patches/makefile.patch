@@ -5,7 +5,7 @@ Author: Stephane Neveu
 Last-Update: 2017-06-22
 --- /dev/null
 +++ b/Makefile
-@@ -0,0 +1,85 @@
+@@ -0,0 +1,82 @@
 +# CurveDNS' Makefile template
 +#
 +# The @VAR@ tokens will be replaced by configure.curvedns
@@ -35,9 +35,6 @@ Last-Update: 2017-06-22
 +
 +clean:
 +	rm -f *.a *.o $(TARGETS)
-+
-+distclean: clean
-+	rm -f Makefile
 +
 +install:
 +	@echo Sorry, no automated install. Copy the following binaries to your preferred destination path:
