@@ -6,7 +6,7 @@ After=network.target
 [Service]
 Type=simple
 EnvironmentFile=/etc/default/curvedns
-ExecStart=exec curvedns ${IP} ${PORT} ${REMOTEIP} ${REMOTEPORT}
+ExecStart=/usr/sbin/curvedns ${IP} ${PORT} ${REMOTEIP} ${REMOTEPORT}
 Restart=on-failure
 SystemCallFilter=~ptrace
 PrivateDevices=yes
