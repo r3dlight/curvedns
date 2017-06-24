@@ -16,7 +16,7 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="DNS/DNSCurve forwarding name server "
 NAME=curvedns
-ACTIONSTART="/usr/bin/envuidgid curvedns envdir /etc/curvedns/env /bin/sh -c \"exec /usr/sbin/curvedns ${IP} ${PORT} ${REMOTEIP} ${REMOTEPORT}\""
+ACTIONSTART="/usr/sbin/curvedns ${IP} ${PORT} ${REMOTEIP} ${REMOTEPORT}"
 DAEMON=$ACTIONSTART
 DAEMON_ARGS="--options args"
 PIDFILE=/var/run/$NAME.pid
