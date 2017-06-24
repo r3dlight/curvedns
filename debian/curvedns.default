@@ -1,6 +1,6 @@
-#Default environment configuration for CurveDNS.
+#CurveDNS: Environment configuration file.
 #
-#Mandatory environment Variables
+#Mandatory environment variables
 #
 #Provide a listening IP or a list of IPs comma separated if needed.
 #Default here is 127.0.0.1
