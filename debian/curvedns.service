@@ -5,6 +5,7 @@ After=network.target
 
 [Service]
 Type=simple
+EnvironmentFile=/etc/curvedns/curvedns_private_key.hex
 EnvironmentFile=/etc/default/curvedns
 ExecStart=/usr/sbin/curvedns ${IP} ${PORT} ${REMOTEIP} ${REMOTEPORT}
 Restart=on-failure

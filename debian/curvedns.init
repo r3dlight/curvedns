@@ -26,6 +26,7 @@ SCRIPTNAME=/etc/init.d/$NAME
 #[ -x "$DAEMON" ] || exit 0
 
 # Read configuration variable file if it is present
+[ -r /etc/curvedns/curvedns_private_key.hex ] && . /etc/default/curvedns_private_key.hex
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
 

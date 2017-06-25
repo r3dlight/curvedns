@@ -16,7 +16,8 @@ if [ x"$1" = "xconfigure" ]; then
   echo "\n#GID of curvedns user." >> /etc/default/curvedns
   echo "GID=`id -g curvedns`" >> /etc/default/curvedns
   echo "\n#Hex private key for curvedns" >> /etc/default/curvedns
-  echo "CURVEDNS_PRIVATE_KEY=`cat /etc/curvedns/env/CURVEDNS_PRIVATE_KEY`" >> /etc/default/curvedns
+  echo "CURVEDNS_PRIVATE_KEY=`cat /etc/curvedns/env/CURVEDNS_PRIVATE_KEY`" > /etc/curvedns/curvedns_private_key.hex
+  chmod 600 /etc/curvedns/curvedns_private_key.hex
   echo "\n#Optionnal environment variables\n" >> /etc/default/curvedns
   echo "#Number of seconds when to consider the target server has timeout (default: 1.2)" >> /etc/default/curvedns
   echo "#CURVEDNS_INTERNAL_TIMEOUT=1.2\n" >> /etc/default/curvedns
