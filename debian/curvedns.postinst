@@ -13,7 +13,7 @@ if [ x"$1" = "xconfigure" ]; then
 
   printf ("#UID of curvedns user.") >> /etc/default/curvedns
   UID=`id -u curvedns`
-  printf ("UID=%di", UID) >> /etc/default/curvedns
+  printf ("UID=%d", UID) >> /etc/default/curvedns
   printf ("\n#GID of curvedns user.") >> /etc/default/curvedns
   GID=`id -g curvedns`
   printf ("GID=%d", GID) >> /etc/default/curvedns
