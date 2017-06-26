@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: curvedns\n"
 "Report-Msgid-Bugs-To: curvedns@packages.debian.org\n"
-"POT-Creation-Date: 2017-06-19 21:11+0200\n"
+"POT-Creation-Date: 2017-06-26 08:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,13 +19,15 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:1001
+#. Type: string
+#. Description
+#: ../curvedns.templates:1001 ../curvedns.templates:2001
 msgid "Fully Qualified Domain Name (FQDN):"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:1001
+#: ../curvedns.templates:1001
 msgid ""
 "Please specify the Fully Qualified Domain Name (FQDN) that curvedns will be "
 "available on. A corresponding private key will be generated in \"/etc/"
@@ -34,8 +36,24 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:1001
+#: ../curvedns.templates:1001
 msgid ""
-"Next, edit \"/etc/default/curvedns\" to fit your needs before starting the "
+"You should also save your authoritative name server name, DNS public key and "
+"secret key somewhere safe."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../curvedns.templates:1001
+msgid ""
+"Next, edit \"/etc/default/curvedns\" to fit your needs before restarting the "
 "server."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../curvedns.templates:2001
+msgid ""
+"Error in parsing your Fully Qualified Domain Name (FQDN).  Please check your "
+"syntax or try again."
 msgstr ""
