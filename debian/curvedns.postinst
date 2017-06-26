@@ -12,11 +12,11 @@ if [ x"$1" = "xconfigure" ]; then
   fi
 
   printf "#UID of curvedns user." >> /etc/default/curvedns
-  UID=`id -u curvedns`
-  printf "\nUID=$UID"  >> /etc/default/curvedns
+  CURVE_UID=`id -u curvedns`
+  printf "\nUID=$CURVE_UID"  >> /etc/default/curvedns
   printf "\n#GID of curvedns user." >> /etc/default/curvedns
-  GID=`id -g curvedns`
-  printf "\nGID=$GID"  >> /etc/default/curvedns
+  CURVE_GID=`id -g curvedns`
+  printf "\nGID=$CURVE_GID"  >> /etc/default/curvedns
   KEY=`cat /etc/curvedns/env/CURVEDNS_PRIVATE_KEY`
   printf "CURVEDNS_PRIVATE_KEY=$KEY" > /etc/curvedns/curvedns_private_key.hex
   chmod 400 /etc/curvedns/curvedns_private_key.hex
