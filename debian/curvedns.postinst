@@ -16,7 +16,7 @@ GID=$(id -g curvedns)
 EOF
 
 
-(umask 110; cat <<EOF > /usr/lib/curvedns/wrapper-start
+(umask 007; cat <<EOF > /usr/lib/curvedns/wrapper-start
 #!/bin/sh
 set -o allexport
 . /etc/default/curvedns
@@ -25,6 +25,8 @@ set -o allexport
 exec /usr/sbin/curvedns "\$@"
 EOF
 )
+
+  chmod +x /usr/lib/curvedns/wrapper-start
 
 
   if [ ! -s /etc/curvedns/curvedns_private_key.hex ]
@@ -36,7 +38,7 @@ EOF
     HEXSECRETKEY=`echo $OUTPUT | awk '{print $12}'`
     echo $DNSPUBKEY > /etc/curvedns/curvedns_public_key.dns
     echo $HEXPUBKEY > /etc/curvedns/curvedns_public_key.hex
-    (umask 077; echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/curvedns_private_key.hex)
+    (umask 007; echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/curvedns_private_key.hex)
   else
     echo "Private key /etc/curvedns/curvedns_private_key.hex already exists !\n"
   fi
