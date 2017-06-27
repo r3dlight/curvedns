@@ -23,9 +23,8 @@ You will notice all the above discussed options are mandatory. CurveDNS will com
 ## ENVIRONMENT VARIABLES
 
 Now that the arguments options have been discussed, it is time to look at the settings that can be passed using the program's environment. We start by discussing the options that are mandatory, i.e. when CurveDNS is started these environment variables must exist.
-The DAEMON WILL NOT START until your CURVEDNS_PRIVATE_KEY is created. Please refer to man (1) curvedns-keygen.
 
--    <CURVEDNS_PRIVATE_KEY>: the hexadecimal representation of the server's private (secret) key.
+-    <CURVEDNS_PRIVATE_KEY>: the hexadecimal representation of the server's private (secret) key. It is automatically created and stored in curvedns_private_key.hex.
 
 The following environment options are optional, but might be handy in some cases or when you are very specific in what you want CurveDNS to do. Notice that when you do not specify any of these options in the environment, the suffixing default value will be used.
 You might want to change these variables with the echo command in /etc/default/curvedns. 
