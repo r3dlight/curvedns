@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
+set -x
 # Source debconf library.
 . /usr/share/debconf/confmodule
 
@@ -17,14 +18,15 @@ EOF
 
 
   if [ ! -s /etc/curvedns/curvedns_private_key.hex ]
-  then  
-    DNSPUBKEY=`curvedns-keygen | awk '/DNS public key:/ {print $4}'`
-    HEXPUBKEY=`curvedns-keygen | awk '/Hex public key:/ {print $4}'`
-    HEXSECRETKEY=`curvedns-keygen | awk '/Hex secret key:/ {print $4}'`
+  then 
+    OUTPUT=`curvedns-keygen`
+    echo $OUTPUT 
+    DNSPUBKEY=`$OUTPUT | awk '/DNS public key:/ {print $4}'`
+    HEXPUBKEY=`$OUTPUT | awk '/Hex public key:/ {print $4}'`
+    HEXSECRETKEY=`$OUTPUT | awk '/Hex secret key:/ {print $4}'`
     echo $DNSPUBKEY > /etc/curvedns/curvedns_public_key.dns
     echo $HEXPUBKEY > /etc/curvedns/curvedns_public_key.hex
-    echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/curvedns_private_key.hex
-    chmod 400 /etc/curvedns/curvedns_private_key.hex
+    (umask 077; echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/curvedns_private_key.hex)
   else
     echo "Private key /etc/curvedns/curvedns_private_key.hex already exists !\n"
   fi
