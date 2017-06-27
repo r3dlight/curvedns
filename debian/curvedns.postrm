@@ -3,7 +3,7 @@ set -e
 
 if [ x"$1" = "xpurge" ]; then
   deluser curvedns || true
-  rm -rf /var/log/curvedns /etc/curvedns
+  rm -rf /var/lib/curvedns /etc/curvedns
 fi
 
 #DEBHELPER#
