@@ -1,2 +1,3 @@
 /etc/curvedns
 /etc/curvedns/env
+/var/lib/curvedns
