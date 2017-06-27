@@ -17,7 +17,7 @@ GID=$(id -g curvedns)
 EOF
 
 
-  if ! [ -n "$(ls -A /etc/curvedns/env/)" ]
+  if [ ! -s /etc/curvedns/curvedns_private_key.hex ]
   then  
     DNSPUBKEY=`curvedns-keygen | awk '/DNS public key:/ {print $4}'`
     HEXPUBKEY=`curvedns-keygen | awk '/Hex public key:/ {print $4}'`
@@ -27,7 +27,7 @@ EOF
     echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/curvedns_private_key.hex
     chmod 400 /etc/curvedns/curvedns_private_key.hex
   else
-    echo "Private key already created !\n"
+    echo "Private key /etc/curvedns/curvedns_private_key.hex already exists !\n"
   fi
 fi
 
