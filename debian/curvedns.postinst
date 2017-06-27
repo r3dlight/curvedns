@@ -16,7 +16,7 @@ GID=$(id -g curvedns)
 EOF
 
 
-cat <<EOF > /usr/lib/curvedns/wrapper-start
+(umask 110; cat <<EOF > /usr/lib/curvedns/wrapper-start
 #!/bin/sh
 set -o allexport
 . /etc/default/curvedns
@@ -24,6 +24,8 @@ set -o allexport
 . /var/lib/curvedns/numeric_uid_gid
 exec /usr/sbin/curvedns "\$@"
 EOF
+)
+
 
   if [ ! -s /etc/curvedns/curvedns_private_key.hex ]
   then 
