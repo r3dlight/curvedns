@@ -20,10 +20,10 @@ EOF
   if [ ! -s /etc/curvedns/curvedns_private_key.hex ]
   then 
     OUTPUT=`curvedns-keygen`
-    echo $OUTPUT 
-    DNSPUBKEY=`$OUTPUT | awk '/DNS public key:/ {print $4}'`
-    HEXPUBKEY=`$OUTPUT | awk '/Hex public key:/ {print $4}'`
-    HEXSECRETKEY=`$OUTPUT | awk '/Hex secret key:/ {print $4}'`
+    echo $OUTPUT
+    DNSPUBKEY=`echo $OUTPUT | awk '/DNS public key:/ {print $4}'`
+    HEXPUBKEY=`echo $OUTPUT | awk '/Hex public key:/ {print $4}'`
+    HEXSECRETKEY=`echo $OUTPUT | awk '/Hex secret key:/ {print $4}'`
     echo $DNSPUBKEY > /etc/curvedns/curvedns_public_key.dns
     echo $HEXPUBKEY > /etc/curvedns/curvedns_public_key.hex
     (umask 077; echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/curvedns_private_key.hex)
