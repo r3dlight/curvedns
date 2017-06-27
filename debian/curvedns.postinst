@@ -9,18 +9,20 @@ if [ x"$1" = "xconfigure" ]; then
     adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --group  --gecos "curvedns user" curvedns
   fi
 
-  cat <<EOF >/var/lib/curvedns/numeric_uid_gid
+
+cat <<EOF > /var/lib/curvedns/numeric_uid_gid
 UID=$(id -u curvedns)
 GID=$(id -g curvedns)
 EOF
 
-  cat <<EOF >/var/lib/curvedns/numeric_uid_gid
+
+cat <<EOF > /usr/lib/curvedns/wrapper-start
 #!/bin/sh
 set -o allexport
 . /etc/default/curvedns
 . /etc/curvedns/curvedns_private_key.hex
 . /var/lib/curvedns/numeric_uid_gid
-exec /usr/sbin/curvedns "$@"
+exec /usr/sbin/curvedns "\$@"
 EOF
 
   if [ ! -s /etc/curvedns/curvedns_private_key.hex ]
