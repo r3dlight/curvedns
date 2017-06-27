@@ -1,0 +1,14 @@
+CurveDNS for Debian
+-------------------
+
+Debian installation of CurveDNS has been linked against libsodium and it does not use nacl anymore.
+Information on libsodium :
+Sodium is a modern, easy-to-use software library for encryption, decryption, signatures, password hashing and more.
+It is a portable, cross-compilable, installable, packageable fork of NaCl, with a compatible API, and an extended API to improve usability even further.
+Its goal is to provide all of the core operations needed to build higher-level cryptographic tools.
+Sodium supports a variety of compilers and operating systems, including Windows (with MinGW or Visual Studio, x86 and x86_64), iOS and Android.
+The design choices emphasize security, and "magic constants" have clear rationales.
+And despite the emphasis on high security, primitives are faster across-the-board than most implementations of the NIST standards.
+
+-- Neveu Stephane <stefneveu@gmail.com> Thu, 27 Jun 2017 08:45:03 +0200
+
