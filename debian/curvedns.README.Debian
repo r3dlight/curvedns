@@ -10,5 +10,9 @@ Sodium supports a variety of compilers and operating systems, including Windows 
 The design choices emphasize security, and "magic constants" have clear rationales.
 And despite the emphasis on high security, primitives are faster across-the-board than most implementations of the NIST standards.
 
+NOTE :
+"dpkg-reconfigure curvedns" will not work. You must first remove manually keys previously generated in /etc/curvedns/*
+
+
 -- Neveu Stephane <stefneveu@gmail.com> Thu, 27 Jun 2017 08:45:03 +0200
 
