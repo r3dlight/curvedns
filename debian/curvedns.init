@@ -16,18 +16,18 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="DNS/DNSCurve forwarding name server "
 NAME=curvedns
-ACTIONSTART="/usr/sbin/curvedns ${IP} ${PORT} ${REMOTEIP} ${REMOTEPORT}"
-DAEMON=$ACTIONSTART
+DAEMON="/usr/lib/curvedns/wrapper-start"
 DAEMON_ARGS="--options args"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
 # Exit if the package is not installed
-#[ -x "$DAEMON" ] || exit 0
+[ -x "$DAEMON" ] || exit 0
 
 # Read configuration variable file if it is present
-[ -r /etc/curvedns/curvedns_private_key.hex ] && . /etc/default/curvedns_private_key.hex
-[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+[ -r /etc/curvedns/curvedns_private_key.hex ] || exit 0
+[ -r /etc/default/$NAME ] || exit 0
+[ -r /var/lib/curvedns/numeric_uid_gid ] || exit 0
 
 
 # Load the VERBOSE setting and other rcS variables
