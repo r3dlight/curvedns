@@ -12,8 +12,8 @@ if [ x"$1" = "xconfigure" ]; then
   fi
 
   cat <<EOF >/var/lib/curvedns/numeric_uid_gid
-  UID=$(id -u curvedns)
-  GID=$(id -g curvedns)
+UID=$(id -u curvedns)
+GID=$(id -g curvedns)
 EOF
 
 
@@ -24,9 +24,7 @@ EOF
     HEXSECRETKEY=`curvedns-keygen | awk '/Hex secret key:/ {print $4}'`
     echo $DNSPUBKEY > /etc/curvedns/curvedns_public_key.dns
     echo $HEXPUBKEY > /etc/curvedns/curvedns_public_key.hex
-    echo $HEXSECRETKEY > /etc/curvedns/env/CURVEDNS_PRIVATE_KEY
-    KEY=`cat /etc/curvedns/env/CURVEDNS_PRIVATE_KEY`
-    printf "CURVEDNS_PRIVATE_KEY=$KEY" > /etc/curvedns/curvedns_private_key.hex
+    echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/env/CURVEDNS_PRIVATE_KEY
     chmod 400 /etc/curvedns/curvedns_private_key.hex
   else
     echo "Private key already created !\n"
