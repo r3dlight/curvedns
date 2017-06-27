@@ -16,10 +16,21 @@ if [ x"$1" = "xconfigure" ]; then
   GID=$(id -g curvedns)
 EOF
 
-  KEY=`cat /etc/curvedns/env/CURVEDNS_PRIVATE_KEY`
-  printf "CURVEDNS_PRIVATE_KEY=$KEY" > /etc/curvedns/curvedns_private_key.hex
-  chmod 400 /etc/curvedns/curvedns_private_key.hex
 
+  if ![ -n "$(ls -A your/dir)" ]
+  then  
+    DNSPUBKEY=`curvedns-keygen | awk '/DNS public key:/ {print $4}'`
+    HEXPUBKEY=`curvedns-keygen | awk '/Hex public key:/ {print $4}'`
+    HEXSECRETKEY=`curvedns-keygen | awk '/Hex secret key:/ {print $4}'`
+    echo $DNSPUBKEY > /etc/curvedns/curvedns_public_key.dns
+    echo $HEXPUBKEY > /etc/curvedns/curvedns_public_key.hex
+    echo $HEXSECRETKEY > /etc/curvedns/env/CURVEDNS_PRIVATE_KEY
+    KEY=`cat /etc/curvedns/env/CURVEDNS_PRIVATE_KEY`
+    printf "CURVEDNS_PRIVATE_KEY=$KEY" > /etc/curvedns/curvedns_private_key.hex
+    chmod 400 /etc/curvedns/curvedns_private_key.hex
+  else
+    echo "Private key already created !\n"
+  fi
 fi
 
 #DEBHELPER#
