@@ -17,7 +17,7 @@ curvedns(8) is the first publicly released forwarding implementation that implem
 
 -   <target DNS server port>: This arguments MUST be set in /etc/default/curvedns and is called REMOTEPORT. The port number of the authoritative name server we are forwarding for. Usually this will be 53.
 
-You will notice all the above discussed options are mandatory. CurveDNS will complain when some argument is missing. Once these parameters are configured in /etc/default/curvedns, you also MUST set KEYS_GENERATED=1 to make systemd able to start it.
+You will notice all the above discussed options are mandatory. CurveDNS will complain when some argument is missing.
 
 
 ## ENVIRONMENT VARIABLES

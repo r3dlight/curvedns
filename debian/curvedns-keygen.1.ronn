@@ -34,38 +34,6 @@ The third line is the private part. This should be the contents of the CURVEDNS_
 Remark that curvedns-keygen does not save any of the information it outputs. So you should be the person to do this. There is however a way to let curvedns-keygen handle the storing of this information, the next section will discuss this.
 
 
-## RUNNING CurveDNS
-
-If your nameserver is called ns1.example.org, running curvedns-keygen to generate a key for the just created CurveDNS environment works like this:
-
-(As root)
-	$ curvedns-keygen /etc/curvedns ns1.example.org
-
-	Authoritative name server name:
-	uz5svv9j6p8j05ms321fjtdms06tw23uv5ck1n2650847c8t29up49.ns1.example.org
-	Hex public key:
-	78ef044d4510948987080d66363130998ba177593150610a40e42c9445d29524
-	Hex secret key:
-	a6b1ca8efeb63024d5e92a356fb8967b091421ad9516006e339dcf495b49e13e
-
-Besides being displayed here, the private key was also written to /etc/curvedns/env/CURVEDNS_PRIVATE_KEY, so it can be used inside CurveDNS environment. If you look back at the configuration options, you can specify all the mentioned environment options in the /etc/curvedns/env directory. So if you want to enable debug mode - which is recommended to easily test your new installation -, you can do this:
-
-	$ echo 5 > /etc/curvedns/env/CURVEDNS_DEBUG
-
-All other CURVEDNS_* environment options can be set like this.
-
-Logging of CurveDNS can be found in /var/log/curvedns/current. The main directory is an (by multilog) automatically rotated log file directory. To see what CurveDNS is doing live, run the following:
-
-    When no specific debug mode (i.e. the DNSCURVE_DEBUG environment variable) has been specified, CurveDNS will only log something when an error occurred. As mentioned before, it is good to temporarily set the debug level to 4 (info), so you can see what is happening.
-
-	$ tail -f /var/log/curvedns/current | tai64nlocal
-
-tai64nlocal transforms the TAI timestamp (that multilog adds) to a human readable date. While this is running in a terminal, it is time to test your CurveDNS installation:
-
-	$ dig example.org @127.0.0.1
-
-Where example.org is served by the authoritative name server you are forwarding for, and 127.0.0.1 is the address of this CurveDNS instance. The terminal running the tail should now report several information and you should of course receive a correct answer for the A-type query for example.org.
-
 ##Publishing keys
 
 Publishing keys is really easy with DNSCurve. The only thing you have to do is notify an upper zone data manager (probably a registry) that you have a new NS record for your zone.
