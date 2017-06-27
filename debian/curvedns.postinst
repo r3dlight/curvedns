@@ -8,7 +8,7 @@ set -e
 if [ x"$1" = "xconfigure" ]; then
 
   if ! getent passwd curvedns > /dev/null; then
-    adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --ingroup nogroup --gecos "curvedns user" curvedns
+    adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --group  --gecos "curvedns user" curvedns
   fi
 
   printf "#UID of curvedns user." >> /etc/default/curvedns
