@@ -16,10 +16,6 @@ REMOTEIP=127.0.0.2
 # Provide the target DNS port.
 REMOTEPORT=53
 
-#UID of curvedns user.
-#UID=122
-#GID of curvedns user.
-#GID=65534
 
 #Optionnal environment variables
 
