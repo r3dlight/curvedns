@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-
+set -x
 # Source debconf library.
 . /usr/share/debconf/confmodule
 
@@ -17,7 +17,7 @@ if [ x"$1" = "xconfigure" ]; then
 EOF
 
 
-  if ![ -n "$(ls -A your/dir)" ]
+  if ![ -n "$(ls -A /etc/curvedns/env/)" ]
   then  
     DNSPUBKEY=`curvedns-keygen | awk '/DNS public key:/ {print $4}'`
     HEXPUBKEY=`curvedns-keygen | awk '/Hex public key:/ {print $4}'`
