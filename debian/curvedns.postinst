@@ -11,30 +11,15 @@ if [ x"$1" = "xconfigure" ]; then
     adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --group  --gecos "curvedns user" curvedns
   fi
 
-  printf "#UID of curvedns user." >> /etc/default/curvedns
-  CURVE_UID=`id -u curvedns`
-  printf "\nUID=$CURVE_UID"  >> /etc/default/curvedns
-  printf "\n#GID of curvedns user." >> /etc/default/curvedns
-  CURVE_GID=`id -g curvedns`
-  printf "\nGID=$CURVE_GID"  >> /etc/default/curvedns
+  cat <<EOF >/var/lib/curvedns/numeric_uid_gid
+  UID=$(id -u curvedns)
+  GID=$(id -g curvedns)
+EOF
+
   KEY=`cat /etc/curvedns/env/CURVEDNS_PRIVATE_KEY`
   printf "CURVEDNS_PRIVATE_KEY=$KEY" > /etc/curvedns/curvedns_private_key.hex
   chmod 400 /etc/curvedns/curvedns_private_key.hex
-  printf "\n\n#Optionnal environment variables\n" >> /etc/default/curvedns
-  printf "\n#Number of seconds when to consider the target server has timeout (default: 1.2)." >> /etc/default/curvedns
-  printf "\n#CURVEDNS_INTERNAL_TIMEOUT=1.2\n" >> /etc/default/curvedns
-  printf "\n#Total number of tries towards the target server before we drop the query (default: 2)." >> /etc/default/curvedns
-  printf "\n#CURVEDNS_UDP_TRIES=2\n" >> /etc/default/curvedns
-  printf "\n#Number of simultaneous TCP connections that are allowed (default: 25)." >> /etc/default/curvedns
-  printf "\n#CURVEDNS_TCP_NUMBER=25\n" >> /etc/default/curvedns
-  printf "\n#Number of seconds before the TCP session to the client times out (default: 60.0)." >> /etc/default/curvedns
-  printf "\n#CURVEDNS_TCP_TIMEOUT=60.0\n" >> /etc/default/curvedns
-  printf "\n#Number of shared secrets that can be cached (default: 5000)." >> /etc/default/curvedns
-  printf "\n#CURVEDNS_SHARED_SECRETS=5000\n" >> /etc/default/curvedns
-  printf "\n#What information should be shown, i.e. the debug level. The number represents the debug level: 1: fatal 2: error 3: warning 4: info 5: debug." >> /etc/default/curvedns
-  printf "\n#CURVEDNS_DEBUG=5\n" >> /etc/default/curvedns
-  printf "\n#The IP address CurveDNS will use as source IP address when it forwards the query to the authoritative name server (default: let kernel decide)." >> /etc/default/curvedns
-  printf "\n#CURVEDNS_SOURCE_IP=xx.xx.xx.xx" >> /etc/default/curvedns
+
 fi
 
 #DEBHELPER#
