@@ -14,6 +14,14 @@ UID=$(id -u curvedns)
 GID=$(id -g curvedns)
 EOF
 
+  cat <<EOF >/var/lib/curvedns/numeric_uid_gid
+#!/bin/sh
+set -o allexport
+. /etc/default/curvedns
+. /etc/curvedns/curvedns_private_key.hex
+. /var/lib/curvedns/numeric_uid_gid
+exec /usr/sbin/curvedns "$@"
+EOF
 
   if [ ! -s /etc/curvedns/curvedns_private_key.hex ]
   then 
