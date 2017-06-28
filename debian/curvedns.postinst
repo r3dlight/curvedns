@@ -14,17 +14,6 @@ UID=$(id -u curvedns)
 GID=$(id -g curvedns)
 EOF
 
-
-(umask 007; cat <<EOF > /usr/lib/curvedns/wrapper-start
-#!/bin/sh
-set -o allexport
-. /etc/default/curvedns
-. /etc/curvedns/curvedns_private_key.hex
-. /var/lib/curvedns/numeric_uid_gid
-exec /usr/sbin/curvedns "\$@"
-EOF
-)
-
   chmod +x /usr/lib/curvedns/wrapper-start
 
 
@@ -32,9 +21,9 @@ EOF
   then 
     OUTPUT=`curvedns-keygen`
     echo $OUTPUT
-    DNSPUBKEY=`echo $OUTPUT | awk '{print $4}'`
-    HEXPUBKEY=`echo $OUTPUT | awk '{print $8}'`
-    HEXSECRETKEY=`echo $OUTPUT | awk '{print $12}'`
+    DNSPUBKEY=`echo "$OUTPUT" | awk '{print $4}'`
+    HEXPUBKEY=`echo "$OUTPUT" | awk '{print $4}'`
+    HEXSECRETKEY=`echo "$OUTPUT" | awk '{print $4}'`
     echo $DNSPUBKEY > /etc/curvedns/curvedns_public_key.dns
     echo $HEXPUBKEY > /etc/curvedns/curvedns_public_key.hex
     (umask 007; echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/curvedns_private_key.hex)
