@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-
+set -x
 
 if [ x"$1" = "xconfigure" ]; then
 
@@ -21,9 +21,9 @@ EOF
   then 
     OUTPUT=`curvedns-keygen`
     echo $OUTPUT
-    DNSPUBKEY=`echo "$OUTPUT" | awk '{print $4}'`
-    HEXPUBKEY=`echo "$OUTPUT" | awk '{print $4}'`
-    HEXSECRETKEY=`echo "$OUTPUT" | awk '{print $4}'`
+    DNSPUBKEY=`echo "$OUTPUT" | awk '/DNS public key:/ {print $4}'`
+    HEXPUBKEY=`echo "$OUTPUT" | awk '/Hex public key:/ {print $4}'`
+    HEXSECRETKEY=`echo "$OUTPUT" | awk '/Hex secret key:/ {print $4}'`
     echo $DNSPUBKEY > /etc/curvedns/curvedns_public_key.dns
     echo $HEXPUBKEY > /etc/curvedns/curvedns_public_key.hex
     (umask 007; echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/curvedns_private_key.hex)
