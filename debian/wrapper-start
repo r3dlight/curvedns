@@ -1,8 +1,11 @@
 #!/bin/sh
+
+# we cannot pass the required environment options to the curvedns daemon using
+# start-stop-daemon; instead we call this wrapper script which ensures that the
+# environment variables required by the daemon are available before execing it
 set -o allexport
 . /etc/default/curvedns
 . /etc/curvedns/curvedns_private_key.hex
 . /var/lib/curvedns/numeric_uid_gid
-ARGS="$IP $PORT $REMOTEIP $REMOTEPORT"
-exec /usr/sbin/curvedns $ARGS
+exec /usr/sbin/curvedns "$@"
 
