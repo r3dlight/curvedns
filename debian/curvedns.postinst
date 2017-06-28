@@ -1,6 +1,5 @@
 #!/bin/sh
 set -e
-set -x
 
 if [ x"$1" = "xconfigure" ]; then
 
@@ -13,8 +12,6 @@ cat <<EOF > /var/lib/curvedns/numeric_uid_gid
 UID=$(id -u curvedns)
 GID=$(id -g curvedns)
 EOF
-
-  chmod +x /usr/lib/curvedns/wrapper-start
 
 
   if [ ! -s /etc/curvedns/curvedns_private_key.hex ]
