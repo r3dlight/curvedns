@@ -1,0 +1,7 @@
+#!/bin/sh
+set -o allexport
+. /etc/default/curvedns
+. /etc/curvedns/curvedns_private_key.hex
+. /var/lib/curvedns/numeric_uid_gid
+exec /usr/sbin/curvedns "$@"
+
