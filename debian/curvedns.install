@@ -1,2 +1,3 @@
 curvedns-keygen /usr/sbin
 curvedns /usr/sbin
+debian/wrapper-start /usr/lib/curvedns
