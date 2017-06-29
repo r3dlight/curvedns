@@ -1,7 +1,11 @@
 CurveDNS for Debian
 -------------------
 
+You might want to change default CurveDNS environment variables in /etc/default/curvedns file.
+
 Debian installation of CurveDNS has been linked against libsodium and it does not use nacl anymore.
+It also does not use daemontools but systemd or classical sysVinit script.
+
 Information on libsodium :
 Sodium is a modern, easy-to-use software library for encryption, decryption, signatures, password hashing and more.
 It is a portable, cross-compilable, installable, packageable fork of NaCl, with a compatible API, and an extended API to improve usability even further.
@@ -12,6 +16,35 @@ And despite the emphasis on high security, primitives are faster across-the-boar
 
 NOTE :
 "dpkg-reconfigure curvedns" will not work. You must first remove manually keys previously generated in /etc/curvedns/*
+
+
+About CurveDNS
+--------------
+
+With CurveDNS you are able to transform any authoritative name server in a DNSCurve capable one. This is done by acting as a kind of proxy, i.e.
+listening to DNS or DNSCurve queries and forwarding the non-protected variants towards the real (existing) name server. The responses are then
+send back to the client either protected (if the query was in DNSCurve) or not.
+
+
+Publishing keys
+---------------
+
+Publishing keys is really easy with DNSCurve:
+The only thing you have to do is notify an upper zone data manager (probably a registry) that you have a new NS record for your zone.
+If your name server was named ns1.example.org before, its DNSCurve enabled name would (for example) be: uz5svv9j6p8j05ms321fjtdms06tw23uv5ck1n2650847c8t29up49.ns1.example.org
+Use your DNS public key saved in /etc/curvedns/README ("Your Public key".ns1.example.org).
+If you send this name towards the upper zone data manager, it automatically encapsulates your 255-bit public DNSCurve elliptic curve key. 
+Making the world aware your name server is DNSCurve capable.
+
+
+Are DNSCurve keys domain based ?
+------------------------------
+
+No, they are not. In fact keys used in DNSCurve are server based. 
+Meaning that all domains that are hosted at the same authoritative name server should have the same DNSCurve public key prefix (i.e. uz5...). An example will clarify this.
+Assume you own both example.com and example.org and you host -- to simplify the story a bit -- both domains on one authoritative name server: ns.example.net. 
+If you are putting CurveDNS in front of this name server, you only have to generate one keypair. 
+The name servers of both domains will therefore change to (for example): uz52gs53blkwtykrqpvh4mzf8jqjs278yfd956bgudck6bq5pl9hz2.ns.example.net.
 
 
 -- Neveu Stephane <stefneveu@gmail.com> Thu, 27 Jun 2017 08:45:03 +0200
