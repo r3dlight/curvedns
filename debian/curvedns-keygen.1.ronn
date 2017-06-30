@@ -3,13 +3,11 @@ curvedns-keygen(1) -- Generates a key pair for curvedns
 
 ## SYNOPSIS
 
-- `curvedns-keygen` [First Usage]: curvedns-keygen (First generate a keypair without any options)
-
-Then:
-
-- `curvedns-keygen` [Usage]: Usage: curvedns-keygen <path-of-CurveDNS-installation> <authoritative-name-server-name> (see RUNNING CurveDNS)
+- `curvedns-keygen` [Usage]: Usage: curvedns-keygen <path-of-CurveDNS-installation> <authoritative-name-server-name>
 
 ## DESCRIPTION
+
+NOTE : Users normally don't need to run this as a key is generated automatically during package installation.
 
 The general concept of DNSCurve is to have a key pair for each and every (authoritative) name server. Since CurveDNS is forwarding queries towards a (non-DNSCurve capable) authoritative name server, we generate and maintain this key pair.
 
@@ -46,7 +44,6 @@ If your name server was named ns1.example.org before, its DNSCurve enabled name 
 Stephane Neveu <stefneveu@gmail.com>
 
 ## SEE ALSO
-
 
 [Installation and configuration from github](https://github.com/curvedns/curvedns/blob/master/INSTALL.md)
 
