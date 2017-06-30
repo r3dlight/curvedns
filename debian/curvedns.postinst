@@ -21,8 +21,18 @@ EOF
     DNSPUBKEY=`echo "$OUTPUT" | awk '/DNS public key:/ {print $4}'`
     HEXPUBKEY=`echo "$OUTPUT" | awk '/Hex public key:/ {print $4}'`
     HEXSECRETKEY=`echo "$OUTPUT" | awk '/Hex secret key:/ {print $4}'`
-    echo "Your DNS Public key is: $DNSPUBKEY\nYour public key (hexadecimal format) is: $HEXPUBKEY" > /etc/curvedns/README
-    #echo $HEXPUBKEY > /etc/curvedns/curvedns_public_key.hex
+
+    cat <<EOF > /etc/curvedns/README
+Your DNScurve public key is
+
+$DNSPUBKEY (DNS encoding)
+$HEXPUBKEY (hexadecimal)
+
+You need to publish this public key as part of your authoritative
+nameserver's DNS records.  See /usr/share/doc/curvedns/README.Debian
+for more information.
+EOF
+
     (umask 007; echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/curvedns_private_key.hex)
   else
     echo "Private key /etc/curvedns/curvedns_private_key.hex already exists !\n"
