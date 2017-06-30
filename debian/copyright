@@ -4,7 +4,6 @@ Source: http://curvedns.on2it.net/
 
 Files: *
 Copyright: 2010 CurveDNS Project.
-
 License: BSD-2-clause
 
 Files: debian/*
@@ -12,11 +11,11 @@ Copyright: 2017 NEVEU Stephane <stefneveu@gmail.com>
 License: BSD-2-clause
 
 Files: nacl/*
-Copyright: public-domain.
+Copyright: public-domain
+License: public-domain
 
 License: public-domain
  Public domain.
- .
  All of the NaCl software is in the public domain, see more at:
  https://nacl.cr.yp.to/features.html
 
@@ -24,10 +23,10 @@ License: BSD-2-clause
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are met:
   .
-  Redistributions of source code must retain the above copyright
+  * Redistributions of source code must retain the above copyright
   notice, this list of conditions and the following disclaimer.
   .
-  Redistributions in binary form must reproduce the above copyright
+  * Redistributions in binary form must reproduce the above copyright
   notice, this list of conditions and the following disclaimer in the
   documentation and/or other materials provided with the distribution.
   .
