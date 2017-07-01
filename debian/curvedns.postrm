@@ -1,10 +1,15 @@
 #!/bin/sh
 set -e
 
-if [ x"$1" = "xpurge" ]; then
-  deluser curvedns || true
-  rm -rf /var/lib/curvedns /etc/curvedns /usr/lib/curvedns
-fi
+case "$1" in
+	remove)
+		deluser --quiet curvedns >/dev/null || true
+		rm -rf /var/lib/curvedns
+		;;
+	purge)
+		rm -f /etc/curvedns/README /etc/curvedns/curvedns_private_key.hex
+		;;
+esac
 
 #DEBHELPER#
 

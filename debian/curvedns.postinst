@@ -2,41 +2,47 @@
 set -e
 
 if [ x"$1" = "xconfigure" ]; then
+	# create the CurveDNS user if necessary
+	if ! getent passwd curvedns >/dev/null ; then
+		adduser --quiet --system --no-create-home --disabled-password \
+			--home /nonexistent --group --gecos "curvedns user" curvedns
+		# generate a file containing the numeric user and group id the CurveDNS
+		# binary will use after dropping its privileges (CurveDNS needs this to
+		# be numeric)
+		cat <<-EOF >/var/lib/curvedns/numeric_uid_gid
+		UID=$(id -u curvedns)
+		GID=$(id -g curvedns)
+		EOF
+	fi
 
-  if ! getent passwd curvedns > /dev/null; then
-    adduser --quiet --system --no-create-home --disabled-password --home /nonexistent --group  --gecos "curvedns user" curvedns
-  fi
+	# if no (private) key exists, generate a new one
+	if [ ! -s /etc/curvedns/curvedns_private_key.hex ] ; then
+		# run curvedns-keygen to generate a new key
+		CURVE_KEYS=`curvedns-keygen`
+		# extract public and private keys from the output
+		DNSPUBKEY=`echo "$CURVE_KEYS" | awk '/DNS public key:/ {print $4}'`
+		HEXPUBKEY=`echo "$CURVE_KEYS" | awk '/Hex public key:/ {print $4}'`
+		HEXSECRETKEY=`echo "$CURVE_KEYS" | awk '/Hex secret key:/ {print $4}'`
 
+		# write the secret key to file (with appropriate permissions)
+		(
+			umask 077
+			echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" \
+				>/etc/curvedns/curvedns_private_key.hex
+		)
 
-cat <<EOF > /var/lib/curvedns/numeric_uid_gid
-UID=$(id -u curvedns)
-GID=$(id -g curvedns)
-EOF
+		# write information about the public key to README
+		cat <<-EOF >/etc/curvedns/README
+		Your DNScurve public key is
 
+		$DNSPUBKEY (DNS encoding)
+		$HEXPUBKEY (hexadecimal)
 
-  if [ ! -s /etc/curvedns/curvedns_private_key.hex ]
-  then 
-    OUTPUT=`curvedns-keygen`
-    echo $OUTPUT
-    DNSPUBKEY=`echo "$OUTPUT" | awk '/DNS public key:/ {print $4}'`
-    HEXPUBKEY=`echo "$OUTPUT" | awk '/Hex public key:/ {print $4}'`
-    HEXSECRETKEY=`echo "$OUTPUT" | awk '/Hex secret key:/ {print $4}'`
-
-    cat <<EOF > /etc/curvedns/README
-Your DNScurve public key is
-
-$DNSPUBKEY (DNS encoding)
-$HEXPUBKEY (hexadecimal)
-
-You need to publish this public key as part of your authoritative
-nameserver's DNS records.  See /usr/share/doc/curvedns/README.Debian
-for more information.
-EOF
-
-    (umask 007; echo "CURVEDNS_PRIVATE_KEY=$HEXSECRETKEY" > /etc/curvedns/curvedns_private_key.hex)
-  else
-    echo "Private key /etc/curvedns/curvedns_private_key.hex already exists !\n"
-  fi
+		You need to publish this public key as part of your authoritative
+		nameserver's DNS records.  See /usr/share/doc/curvedns/README.Debian
+		for more information.
+		EOF
+	fi
 fi
 
 #DEBHELPER#
