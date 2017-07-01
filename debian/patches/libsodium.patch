@@ -6,25 +6,8 @@ Author: Stephane Neveu
 Last-Update: 2017-06-22
 --- /dev/null
 +++ b/Makefile
-@@ -0,0 +1,82 @@
-+# CurveDNS' Makefile template
-+#
-+# The @VAR@ tokens will be replaced by configure.curvedns
-+
-+NACLLIB?=/usr/local/lib
-+NACLINC?=/usr/local/include
-+CDNSCFLAGS?=-Wall -fno-strict-aliasing -O3 -I$(NACLINC)
-+
-+# If you have libev at a non-standard place, specify that here:
-+#EV=
-+#EVCFLAGS=-I$(EV)/include
-+#EVLDFLAGS=-L$(EV)/lib
-+
-+CC?=gcc
-+CFLAGS?= -O3 -fomit-frame-pointer -funroll-loops $(CDNSCFLAGS) $(EVCFLAGS) $(CPPFLAGS)
-+LDFLAGS?=-L$(NACLLIB) $(EVLDFLAGS)
-+
-+# do not edit below
+@@ -0,0 +1,67 @@
++# CurveDNS Debian Makefile (link against libsodium)
 +
 +EXTRALIB=-lev -lsodium
 +
@@ -40,6 +23,8 @@ Last-Update: 2017-06-22
 +install:
 +	@echo Sorry, no automated install. Copy the following binaries to your preferred destination path:
 +	@echo "  $(TARGETS)"
++
++distclean: clean
 +
 +debug.o: debug.c debug.h
 +	$(CC) $(CPPFLAGS) $(CFLAGS) -c debug.c
