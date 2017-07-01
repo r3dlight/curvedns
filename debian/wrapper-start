@@ -4,8 +4,8 @@
 # start-stop-daemon; instead we call this wrapper script which ensures that the
 # environment variables required by the daemon are available before execing it
 set -o allexport
-. /var/lib/curvedns/numeric_uid_gid
-. /etc/default/curvedns
-. /etc/curvedns/curvedns_private_key.hex
+[ -r /var/lib/curvedns/numeric_uid_gid ] && . /var/lib/curvedns/numeric_uid_gid
+[ -r /etc/default/curvedns ] && . /etc/default/curvedns
+[ -r /etc/curvedns/curvedns_private_key.hex ] && . /etc/curvedns/curvedns_private_key.hex
 exec /usr/sbin/curvedns "$@"
 
