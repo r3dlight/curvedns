@@ -1,41 +1,26 @@
-#CurveDNS: Environment configuration file.
-#
-#Mandatory environment variables
-#
-#Provide a listening IP or a list of IPs comma separated if needed.
-#Default here is 127.0.0.1
+# CurveDNS configuration file.
+
+# IP(s) CurveDNS should listen on (comma separated list)
+# this is passed to curvedns(8) as first parameter
 IP=127.0.0.1
 
-#Provide a port to listen to.
-#Default is 53 as usual
+# Port CurveDNS will listen on (53 ist the default for DNS)
+# this is passed to curvedns(8) as second parameter
 PORT=53
 
-#Provide the target DNS server IP.
+# IP of your authoritative nameserver (incoming quieries will be forwarded to this server)
+# this is passed to curvedns(8) as third parameter
 REMOTEIP=127.0.0.2
 
-# Provide the target DNS port.
+# Port of the DNS daemon on authoritative nameserver listens on (53 is the default for DNS)
+# this is passed to curvedns(8) as fourth parameter
 REMOTEPORT=53
 
-
-#Optionnal environment variables
-
-#Number of seconds when to consider the target server has timeout (default: 1.2).
+#Optionnal CurveDNS configuration, see curvedns(8)
 #CURVEDNS_INTERNAL_TIMEOUT=1.2
-
-#Total number of tries towards the target server before we drop the query (default: 2).
 #CURVEDNS_UDP_TRIES=2
-
-#Number of simultaneous TCP connections that are allowed (default: 25).
 #CURVEDNS_TCP_NUMBER=25
-
-#Number of seconds before the TCP session to the client times out (default: 60.0).
 #CURVEDNS_TCP_TIMEOUT=60.0
-
-#Number of shared secrets that can be cached (default: 5000).
 #CURVEDNS_SHARED_SECRETS=5000
-
-#What information should be shown, i.e. the debug level. The number represents the debug level: 1: fatal 2: error 3: warning 4: info 5: debug.
 #CURVEDNS_DEBUG=5
-
-#The IP address CurveDNS will use as source IP address when it forwards the query to the authoritative name server (default: let kernel decide).
 #CURVEDNS_SOURCE_IP=xx.xx.xx.xx
