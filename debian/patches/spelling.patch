@@ -13,3 +13,14 @@ Last-Update: 2017-06-02
  	event_cleanup_entry(loop, general_entry);
  	return;
  }
+--- a/curvedns.c
++++ b/curvedns.c
+@@ -54,7 +54,7 @@
+ static int usage(const char *argv0) {
+ 	debug_log(DEBUG_FATAL, "Usage: %s <listening IPs (sep. by comma)> <listening port> <target DNS server IP> <target DNS server port>\n\n", argv0);
+ 	debug_log(DEBUG_FATAL, "Environment options (between []'s are optional):\n");
+-	debug_log(DEBUG_FATAL, " CURVEDNS_PRIVATE_KEY\n\tThe hexidecimal representation of the server's private (secret) key\n");
++	debug_log(DEBUG_FATAL, " CURVEDNS_PRIVATE_KEY\n\tThe hexadecimal representation of the server's private (secret) key\n");
+ 	debug_log(DEBUG_FATAL, " UID\n\tNon-root user id to run under\n");
+ 	debug_log(DEBUG_FATAL, " GID\n\tNon-root user group id to run under\n");
+ 	debug_log(DEBUG_FATAL, " [CURVEDNS_SOURCE_IP]\n\tThe IP to bind on when target server is contacted (default: [none])\n");
