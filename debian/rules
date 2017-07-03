@@ -12,7 +12,3 @@ override_dh_installman:
 	ronn -r $(CURDIR)/debian/curvedns-keygen.1.ronn
 	dh_installman
 
-override_dh_clean:
-	rm -f debian/curvedns.8
-	rm -f debian/curvedns-keygen.1
-	dh_clean
