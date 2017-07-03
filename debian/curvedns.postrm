@@ -2,11 +2,9 @@
 set -e
 
 case "$1" in
-	remove)
+	purge)
 		deluser --quiet curvedns >/dev/null || true
 		rm -rf /var/lib/curvedns
-		;;
-	purge)
 		rm -f /etc/curvedns/README /etc/curvedns/curvedns_private_key.hex
 		;;
 esac
