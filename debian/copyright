@@ -3,6 +3,19 @@ Upstream-Name: curvedns
 Source: http://curvedns.on2it.net/
 
 Files: *
+Copyright: 2010, CurveDNS Project.
+License: BSD-2-clause
+
+Files: ChangeLog
+  INSTALL
+  Makefile.in
+  VERSION
+  configure.curvedns
+  configure.nacl
+Copyright: 2010 CurveDNS Project.
+License: BSD-2-clause
+
+Files: contrib/*
 Copyright: 2010 CurveDNS Project.
 License: BSD-2-clause
 
@@ -14,10 +27,9 @@ Files: nacl/*
 Copyright: public-domain
 License: public-domain
 
+Files: nacl/crypto_scalarmult/curve25519/donna_c64/smult.c
+Copyright: 2008, Google Inc.
 License: public-domain
- Public domain.
- All of the NaCl software is in the public domain, see more at:
- https://nacl.cr.yp.to/features.html
 
 License: BSD-2-clause
  Redistribution and use in source and binary forms, with or without
@@ -40,3 +52,8 @@ License: BSD-2-clause
  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: public-domain
+ Public domain.
+ All of the NaCl software is in the public domain, see more at:
+ https://nacl.cr.yp.to/features.html
