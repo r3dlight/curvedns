@@ -11,8 +11,8 @@ Build-Depends:
  dh-systemd
 Homepage: http://curvedns.on2it.net/
 Standards-Version: 4.0.0
-Vcs-Git: https://github.com/r3dlight/curvedns.git
-Vcs-Browser: https://github.com/r3dlight/curvedns
+Vcs-Git: https://anonscm.debian.org/git/pkg-security/curvedns.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-security/brutespray.git/
 
 Package: curvedns
 Depends: adduser,
