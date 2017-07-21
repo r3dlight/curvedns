@@ -1,6 +1,6 @@
 Source: curvedns
 Section: net
-Priority: standard
+Priority: extra
 Maintainer: Debian Security Tools Packaging Team <pkg-security-team@lists.alioth.debian.org>
 Uploaders: NEVEU Stephane <stefneveu@gmail.com>
 Build-Depends:
