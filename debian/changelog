@@ -1,3 +1,9 @@
+curvedns (0.87-3) unstable; urgency=medium
+
+  * Update control file (Priority, Vcs-*)
+
+ -- NEVEU Stephane <stefneveu@gmail.com>  Sat, 22 Jul 2017 09:20:35 +0200
+
 curvedns (0.87-2) unstable; urgency=medium
 
   * Update copyright file (Closes:#869132)
